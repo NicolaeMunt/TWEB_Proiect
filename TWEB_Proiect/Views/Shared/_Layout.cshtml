@@ -9,7 +9,9 @@
 </head>
 <body>
 @Html.Partial("_NavBar")
-@RenderBody()  <!-- Child views’ content will appear here -->
+@RenderBody()  
+@Html.Partial("_Footer")
+<!-- Child views’ content will appear here -->
 <!-- JavaScript (Bootstrap requires jQuery first) -->
 @Scripts.Render("~/bundles/jquery")
 @Scripts.Render("~/Content/js") <!-- This loads Bootstrap.js -->
