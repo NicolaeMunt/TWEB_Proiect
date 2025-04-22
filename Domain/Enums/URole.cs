@@ -4,9 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain
+namespace Domain.Enums
 {
-    public class Class1
+    public enum URole
     {
+        User,
+        Moderator,
+        Admin
     }
 }
