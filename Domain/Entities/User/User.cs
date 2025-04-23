@@ -10,7 +10,7 @@ namespace Domain.Entities.User
 
     public class UserApplication
     {
-        [Key]                      // PK
+        [Key]                     
         public int Id { get; set; }
 
         [Required, StringLength(40)]

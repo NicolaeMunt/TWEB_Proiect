@@ -7,10 +7,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TWEB_Proiect", "TWEB_Proiec
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessLogic", "BusinessLogic\BusinessLogic.csproj", "{6F82B5D3-C6FC-40CF-B039-2821E9311033}"
 	ProjectSection(ProjectDependencies) = postProject
+		{652AD094-2F4B-4503-BC2F-C22214A9974F} = {652AD094-2F4B-4503-BC2F-C22214A9974F}
 		{7BA1E047-C2DC-4AEC-B67B-49C0824630DF} = {7BA1E047-C2DC-4AEC-B67B-49C0824630DF}
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{652AD094-2F4B-4503-BC2F-C22214A9974F}"
+	ProjectSection(ProjectDependencies) = postProject
+		{7BA1E047-C2DC-4AEC-B67B-49C0824630DF} = {7BA1E047-C2DC-4AEC-B67B-49C0824630DF}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Helpers", "Helpers\Helpers.csproj", "{7BA1E047-C2DC-4AEC-B67B-49C0824630DF}"
 EndProject
