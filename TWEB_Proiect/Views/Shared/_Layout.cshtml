@@ -2,19 +2,29 @@
 <html lang="ro">
 <head>
     <meta charset="utf-8" />
-    <title>INJÎNER</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>@ViewBag.Title - INJÎNER</title>
 
-    <!-- CSS Bundling -->
+    @* -------------  CSS  bundles ------------- *@
     @Styles.Render("~/Content/css")
+
+    @* -------------  per-view extra <head> stuff ------------- *@
+    @RenderSection("Head", required: false)
 </head>
 <body>
-@Html.Partial("_NavBar")
-@RenderBody()  
-@Html.Partial("_Footer")
-<!-- Child views’ content will appear here -->
-<!-- JavaScript (Bootstrap requires jQuery first) -->
-@Scripts.Render("~/bundles/jquery")
-@Scripts.Render("~/Content/js") <!-- This loads Bootstrap.js -->
+    @Html.Partial("_NavBar")
+
+    <main role="main" class="container">
+        @RenderBody()
+    </main>
+    @if (ViewBag.HideFooter == null || ViewBag.HideFooter == false)
+    {
+        @Html.Partial("_Footer")
+    }
+    @* -------------  JS  bundles (order matters!) ------------- *@
+    @Scripts.Render("~/bundles/bootstrap",   // includes jQuery + Bootstrap now
+                "~/bundles/jqueryval")
+    @* -------------  per-view extra scripts ------------- *@
+    @RenderSection("Scripts", required: false)
 </body>
 </html>
-
