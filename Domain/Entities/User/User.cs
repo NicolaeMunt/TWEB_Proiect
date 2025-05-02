@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using Domain.Entities.Post;
 
 namespace Domain.Entities.User
 {
@@ -28,7 +27,7 @@ namespace Domain.Entities.User
         public URole Level { get; set; } = URole.Regular;
 
         // ---- navigation ---------------------------------------------
-        public virtual ICollection<ApplicationPost> Posts { get; set; }
-            = new List<ApplicationPost>();
+        public virtual ICollection<Post> Posts { get; set; }
+            = new List<Post>();
     }
 }

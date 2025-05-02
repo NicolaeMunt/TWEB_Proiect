@@ -5,12 +5,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Domain.Entities.User;
+using Domain.Entities.User
 
 
 namespace Domain.Entities.Post
 {
-    public class ApplicationPost
+    public class Post
     {
         public int Id { get; set; }
 
