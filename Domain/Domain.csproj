@@ -54,8 +54,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Entities\User\Session.cs" />
+    <Compile Include="Entities\User\UDbTableApp.cs" />
+    <Compile Include="Entities\User\ULoginDataApp.cs" />
+    <Compile Include="Entities\User\ULoginRespApp.cs" />
+    <Compile Include="Entities\User\UserApp.cs" />
     <Compile Include="Enums\URole.cs" />
+    <Compile Include="Interfaces\IUserRepository.cs" />
+    <Compile Include="Interfaces\IUserService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />
