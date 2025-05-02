@@ -33,7 +33,6 @@ namespace TWEB_Proiect.Controllers
 
         public ActionResult LogIn()
         {
-            ViewBag.HideFooter = true;
             return View();
         }
 

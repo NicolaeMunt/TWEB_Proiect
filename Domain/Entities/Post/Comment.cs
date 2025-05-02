@@ -18,7 +18,7 @@ namespace Domain.Entities.Post
         // -------------- relationships ------------------------
         [Required]
         public int PostId { get; set; }
-        public virtual ApplicationPost Post { get; set; }
+        public virtual Post Post { get; set; }
 
         [Required]
         public string AuthorId { get; set; } = string.Empty;

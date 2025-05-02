@@ -54,13 +54,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Entities\Post\Comment.cs" />
-    <Compile Include="Entities\Post\Post.cs" />
     <Compile Include="Entities\User\Session.cs" />
-    <Compile Include="Entities\User\UDbTable.cs" />
-    <Compile Include="Entities\User\ULoginData.cs" />
-    <Compile Include="Entities\User\ULoginResp.cs" />
-    <Compile Include="Entities\User\User.cs" />
     <Compile Include="Enums\URole.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
