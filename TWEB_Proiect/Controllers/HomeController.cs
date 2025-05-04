@@ -41,5 +41,11 @@ namespace TWEB_Proiect.Controllers
         {
             return View();
         }
+
+        public ActionResult SignUp()
+        {
+            ViewBag.HideFooter = true;
+            return View();
+        }
     }
 }
