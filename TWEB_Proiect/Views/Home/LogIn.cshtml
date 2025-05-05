@@ -10,45 +10,30 @@
     </div>
 }
 <body>
-    <div class="modal-wrap">
-        <div class="modal-bodies">
-            <div class="modal-body modal-body-step-1 is-showing">
-                <div class="title">Log In</div>
-                <div class="description">Hello there, Log In</div>
-                @using (Html.BeginForm("LogIn", "Home", FormMethod.Post))
-                {
-                    @Html.AntiForgeryToken()
-                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="login-page-container">
+        <div class="login-form-container">
+            <h2 class="login-title">LOGARE</h2>
+            <p class="login-subtitle">Salutare, aici te loghezi pentru a da o întrebare</p>
 
-                    <div class="form-group">
-                        @Html.TextBoxFor(m => m.Username, new { placeholder = "Username" })
-                        @Html.ValidationMessageFor(m => m.Username, "", new { @class = "text-danger" })
-                    </div>
+            <form>
+                <div class="form-group">
+                    <input type="text" class="login-input" placeholder="Nume Utilizator" />
+                </div>
 
-                    <div class="form-group">
-                        @Html.PasswordFor(m => m.Password, new { placeholder = "Password" })
-                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
-                    </div>
+                <div class="form-group">
+                    <input type="password" class="login-input" placeholder="Parolă" />
+                </div>
 
-                    <div class="form-group">
-                        @Html.CheckBoxFor(m => m.RememberMe)
-                        @Html.LabelFor(m => m.RememberMe)
-                    </div>
+                <div class="remember-me-container">
+                    <input type="checkbox" class="remember-me-checkbox" id="remember" />
+                    <label class="remember-me-label" for="remember">Te Memorez?</label>
+                </div>
 
-                    <div class="text-center">
-                        <button type="submit" class="button">LOG IN</button>
-                        <a href="@Url.Action("SignUp", "Home")"><div class="button">Create an account</div></a>
-                    </div>
-                }
-            </div>
+                <div class="login-buttons-container">
+                    <button type="submit" class="login-btn">Logare</button>
+                    <button type="button" class="create-account-btn">Creare Cont</button>
+                </div>
+            </form>
         </div>
     </div>
-    <div class="modal-footer">
-        <div class="text-center">
-            <button type="button" class="btn">Base class</button>
-        </div>
-    </div>
-    <script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
-    <script src="~/Scripts/jquery.validate.min.js"></script>
-    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 </body>

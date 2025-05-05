@@ -2965,3 +2965,272 @@ a, button, .btn, input, textarea, select {
     background: transparent !important;
     padding: 0 !important;
 }
+/* СТИЛИ ДЛЯ СТРАНИЦЫ ЛОГИНА - синяя/сиреневая палитра */
+
+/* CSS переменные (если еще не добавлены) */
+:root {
+    --primary-dark: #1a237e;
+    --primary-blue: #3949ab;
+    --light-blue: #7986cb;
+    --accent-purple: #7c4dff;
+    --light-purple: #ce93d8;
+    --secondary-purple: #ba68c8;
+    --text-white: #ffffff;
+    --text-dark: #1a237e;
+    --text-shadow: 0 2px 4px rgba(0,0,0,0.4);
+    --card-bg: rgba(255, 255, 255, 0.95);
+    --hover-purple: #9c27b0;
+    --gradient-bg: linear-gradient(135deg, #1a237e 0%, #3949ab 50%, #7986cb 100%);
+}
+
+/* Контейнер страницы логина */
+.login-page-container {
+    background: var(--gradient-bg) !important;
+    min-height: 100vh !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 20px !important;
+}
+
+/* Главная форма логина */
+.login-form-container {
+    background: var(--card-bg) !important;
+    backdrop-filter: blur(10px) !important;
+    border-radius: 20px !important;
+    padding: 40px !important;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2) !important;
+    border: 1px solid rgba(124, 77, 255, 0.3) !important;
+    max-width: 450px !important;
+    width: 100% !important;
+    transition: all 0.3s ease !important;
+}
+
+    .login-form-container:hover {
+        transform: translateY(-5px) !important;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25) !important;
+    }
+
+/* Заголовок LOG IN */
+.login-title {
+    color: var(--accent-purple) !important;
+    font-size: 32px !important;
+    font-weight: 700 !important;
+    text-align: center !important;
+    margin-bottom: 10px !important;
+    text-transform: uppercase !important;
+    letter-spacing: 2px !important;
+}
+
+/* Подзаголовок "Hello there, Log In" */
+.login-subtitle {
+    color: #666 !important;
+    font-size: 16px !important;
+    text-align: center !important;
+    margin-bottom: 30px !important;
+}
+
+/* Группы полей ввода */
+.form-group {
+    margin-bottom: 25px !important;
+    position: relative !important;
+}
+
+/* Поля ввода Username и Password */
+.login-input {
+    width: 100% !important;
+    height: 50px !important;
+    padding: 15px 20px !important;
+    font-size: 16px !important;
+    color: var(--text-dark) !important;
+    background: rgba(124, 77, 255, 0.05) !important;
+    border: 2px solid rgba(124, 77, 255, 0.3) !important;
+    border-radius: 25px !important;
+    outline: none !important;
+    transition: all 0.3s ease !important;
+    box-sizing: border-box !important;
+}
+
+    .login-input:focus {
+        border-color: var(--accent-purple) !important;
+        background: rgba(124, 77, 255, 0.1) !important;
+        box-shadow: 0 0 15px rgba(124, 77, 255, 0.3) !important;
+    }
+
+    .login-input::placeholder {
+        color: rgba(26, 35, 126, 0.6) !important;
+        font-weight: 500 !important;
+    }
+
+/* Чекбокс "Remember me?" */
+.remember-me-container {
+    display: flex !important;
+    align-items: center !important;
+    margin-bottom: 30px !important;
+    gap: 10px !important;
+}
+
+.remember-me-checkbox {
+    width: 18px !important;
+    height: 18px !important;
+    accent-color: var(--accent-purple) !important;
+}
+
+.remember-me-label {
+    color: #666 !important;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    cursor: pointer !important;
+}
+
+/* Контейнер кнопок */
+.login-buttons-container {
+    display: flex !important;
+    gap: 15px !important;
+    flex-direction: column !important;
+}
+
+/* Кнопка LOG IN */
+.login-btn {
+    width: 100% !important;
+    height: 50px !important;
+    background: linear-gradient(45deg, var(--accent-purple), var(--secondary-purple)) !important;
+    color: var(--text-white) !important;
+    border: none !important;
+    border-radius: 25px !important;
+    font-size: 16px !important;
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1px !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+    text-shadow: var(--text-shadow) !important;
+}
+
+    .login-btn:hover {
+        background: linear-gradient(45deg, var(--hover-purple), #d81b60) !important;
+        transform: translateY(-2px) !important;
+        box-shadow: 0 8px 25px rgba(124, 77, 255, 0.4) !important;
+    }
+
+/* Кнопка CREATE AN ACCOUNT */
+.create-account-btn {
+    width: 100% !important;
+    height: 50px !important;
+    background: rgba(124, 77, 255, 0.1) !important;
+    color: var(--accent-purple) !important;
+    border: 2px solid var(--accent-purple) !important;
+    border-radius: 25px !important;
+    font-size: 16px !important;
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1px !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+}
+
+    .create-account-btn:hover {
+        background: var(--accent-purple) !important;
+        color: var(--text-white) !important;
+        transform: translateY(-2px) !important;
+        box-shadow: 0 8px 25px rgba(124, 77, 255, 0.4) !important;
+        text-shadow: var(--text-shadow) !important;
+    }
+
+/* Дополнительные ссылки (если есть) */
+.login-links {
+    text-align: center !important;
+    margin-top: 20px !important;
+}
+
+    .login-links a {
+        color: var(--accent-purple) !important;
+        text-decoration: none !important;
+        font-weight: 500 !important;
+        transition: all 0.3s ease !important;
+    }
+
+        .login-links a:hover {
+            color: var(--hover-purple) !important;
+            text-decoration: underline !important;
+        }
+
+/* Адаптивность для мобильных */
+@media (max-width: 768px) {
+    .login-form-container {
+        padding: 30px 20px !important;
+        margin: 10px !important;
+    }
+
+    .login-title {
+        font-size: 28px !important;
+    }
+
+    .login-input {
+        height: 45px !important;
+        padding: 12px 18px !important;
+        font-size: 14px !important;
+    }
+
+    .login-btn,
+    .create-account-btn {
+        height: 45px !important;
+        font-size: 14px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .login-form-container {
+        padding: 25px 15px !important;
+    }
+
+    .login-title {
+        font-size: 24px !important;
+    }
+
+    .login-buttons-container {
+        gap: 10px !important;
+    }
+}
+
+/* Анимации появления */
+.login-form-container {
+    animation: loginFadeIn 0.6s ease-out !important;
+}
+
+@keyframes loginFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Дополнительные эффекты для полей */
+.login-input:not(:placeholder-shown) {
+    background: rgba(124, 77, 255, 0.08) !important;
+}
+
+/* Эффект фокуса для всей формы */
+.login-form-container:focus-within {
+    box-shadow: 0 20px 45px rgba(124, 77, 255, 0.25) !important;
+}
+
+/* Стили для ошибок (если понадобятся) */
+.login-error {
+    color: #f44336 !important;
+    font-size: 14px !important;
+    margin-top: 5px !important;
+    text-align: center !important;
+}
+
+.login-success {
+    color: #4caf50 !important;
+    font-size: 14px !important;
+    margin-top: 5px !important;
+    text-align: center !important;
+}
