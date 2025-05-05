@@ -1,6 +1,7 @@
 ﻿using Domain.Entities.User;
 using Domain.Interfaces;
 using System;
+using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using TWEB_Proiect.Models;
@@ -24,80 +25,126 @@ namespace TWEB_Proiect.Controllers
             return View();
         }
 
-        // POST: /Account/Login
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public ActionResult Login(LoginViewModel model, string returnUrl)
         {
-            if (!ModelState.IsValid)
+            try
             {
+                // Log attempt for debugging
+                System.Diagnostics.Debug.WriteLine($"Login attempt: {model.Username}");
+
+                if (!ModelState.IsValid)
+                {
+                    // Return to login with validation errors
+                    return View(model);
+                }
+
+                string token;
+                var user = _userService.Authenticate(model.Username, model.Password, out token);
+
+                if (user != null)
+                {
+                    // Login successful
+                    System.Diagnostics.Debug.WriteLine($"Login successful for: {model.Username}");
+
+                    // Store token in cookie
+                    var authCookie = new HttpCookie("AuthToken", token);
+                    if (model.RememberMe)
+                    {
+                        authCookie.Expires = DateTime.Now.AddDays(1);
+                    }
+                    Response.Cookies.Add(authCookie);
+
+                    // Store user info in session
+                    Session["UserId"] = user.Id;
+                    Session["Username"] = user.Username;
+
+                    // Success message
+                    TempData["SuccessMessage"] = "Login successful!";
+
+                    // Always redirect to Index after successful login
+                    return RedirectToAction("Index", "Home");
+                }
+
+                // Authentication failed
+                System.Diagnostics.Debug.WriteLine($"Authentication failed for: {model.Username}");
+                ModelState.AddModelError("", "Invalid username or password.");
                 return View(model);
             }
-
-            string token;
-            var user = _userService.Authenticate(model.Username, model.Password, out token);
-
-            if (user != null)
+            catch (Exception ex)
             {
-                // Store token in cookie
-                var authCookie = new HttpCookie("AuthToken", token);
-                if (model.RememberMe)
-                {
-                    authCookie.Expires = DateTime.Now.AddDays(1);
-                }
-                Response.Cookies.Add(authCookie);
+                // Log exception
+                System.Diagnostics.Debug.WriteLine($"Login exception: {ex.Message}");
+                System.Diagnostics.Debug.WriteLine($"Stack trace: {ex.StackTrace}");
 
-                // Store user ID in session for easier access
-                Session["UserId"] = user.Id;
-                Session["Username"] = user.Username;
-
-                return RedirectToLocal(returnUrl);
+                // Add error to model state
+                ModelState.AddModelError("", $"Error during login: {ex.Message}");
+                return View(model);
             }
-
-            ModelState.AddModelError("", "Invalid username or password.");
-            return View(model);
         }
-
-        // GET: /Account/Register
-        [AllowAnonymous]
-        public ActionResult Register()
-        {
-            return View();
-        }
-
-        // POST: /Account/Register
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
+        // In AccountController.cs - Updated Register action
+        
         public ActionResult Register(RegisterViewModel model)
         {
-            System.Diagnostics.Debug.WriteLine($"Register action called - Username: {model.Username}, Email: {model.Email}");
-            if (ModelState.IsValid)
+            try
             {
-                var user = new User
-                {
-                    Username = model.Username,
-                    Email = model.Email
-                };
+                // Log attempt
+                System.Diagnostics.Debug.WriteLine($"Registration attempt: {model.Username}, {model.Email}");
 
-                try
+                if (ModelState.IsValid)
                 {
+                    var user = new User
+                    {
+                        Username = model.Username,
+                        Email = model.Email
+                    };
+
+                    System.Diagnostics.Debug.WriteLine("Calling RegisterUser service method");
                     bool result = _userService.RegisterUser(user, model.Password);
+
+                    System.Diagnostics.Debug.WriteLine($"RegisterUser result: {result}, User ID: {user.Id}");
 
                     if (result)
                     {
-                        return RedirectToAction("Login");
+                        // Registration successful
+                        TempData["SuccessMessage"] = "Registration successful!";
+
+                        // Redirect to UserList instead of Login
+                        return RedirectToAction("UserList", "Home");
+                    }
+                    else
+                    {
+                        // Registration returned false but no exception
+                        System.Diagnostics.Debug.WriteLine("Registration failed without exception");
+                        ModelState.AddModelError("", "Registration failed. Please try again.");
                     }
                 }
-                catch (ApplicationException ex)
+                else
                 {
-                    ModelState.AddModelError("", ex.Message);
+                    // Log validation errors
+                    var errors = ModelState.Values
+                        .SelectMany(v => v.Errors)
+                        .Select(e => e.ErrorMessage);
+                    System.Diagnostics.Debug.WriteLine($"Validation errors: {string.Join(", ", errors)}");
                 }
-                catch (Exception)
-                {
-                    ModelState.AddModelError("", "An error occurred during registration.");
-                }
+            }
+            catch (ApplicationException ex)
+            {
+                // Expected application exceptions (like duplicate username)
+                System.Diagnostics.Debug.WriteLine($"Registration application exception: {ex.Message}");
+                ModelState.AddModelError("", ex.Message);
+            }
+            catch (Exception ex)
+            {
+                // Unexpected exceptions
+                System.Diagnostics.Debug.WriteLine($"Registration exception: {ex.Message}");
+                System.Diagnostics.Debug.WriteLine($"Stack trace: {ex.StackTrace}");
+                ModelState.AddModelError("", $"Error during registration: {ex.Message}");
             }
 
             return View(model);

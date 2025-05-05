@@ -1,9 +1,14 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
-
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["SuccessMessage"]
+    </div>
+}
 <body>
-   
+
 
 
     <!--======= welcome section on top background=====-->
@@ -52,7 +57,7 @@
 
 
 
-                        
+
 
                         <section id="content2">
                             <!--Most Response Content Section -->
@@ -1533,5 +1538,5 @@
         </div>
     </section>
     <!--    footer -->
-    
+
 </body>

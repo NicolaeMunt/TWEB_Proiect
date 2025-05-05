@@ -1,0 +1,85 @@
+﻿@model IEnumerable<Domain.Entities.User.User>
+@{
+    ViewBag.Title = "User List";
+}
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["SuccessMessage"]
+    </div>
+}
+<h2>Registered Users</h2>
+
+<div class="panel panel-default">
+    <div class="panel-heading">Database Connection Info</div>
+    <div class="panel-body">
+        <p><strong>Connection String:</strong> @ViewBag.ConnectionString</p>
+        <p><strong>Database Name:</strong> @ViewBag.DatabaseName</p>
+    </div>
+</div>
+
+@if (ViewBag.Error != null)
+{
+    <div class="alert alert-danger">
+        <h4>Error occurred</h4>
+        <p>@ViewBag.Error</p>
+        <pre>@ViewBag.StackTrace</pre>
+    </div>
+}
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">User List</h3>
+    </div>
+    <div class="panel-body">
+        @if (Model.Any())
+        {
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Username</th>
+                        <th>Email</th>
+                        <th>Last Login</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var user in Model)
+                    {
+                        <tr>
+                            <td>@user.Id</td>
+                            <td>@user.Username</td>
+                            <td>@user.Email</td>
+                            <td>
+                                @{
+                                    var loginInfo = ViewBag.LoginData != null ?
+                                        ((IEnumerable<Domain.Entities.User.ULoginData>)ViewBag.LoginData)
+                                            .FirstOrDefault(ld => ld.UserId == user.Id) : null;
+
+                                    if (loginInfo != null)
+                                    {
+                                        @loginInfo.LastLogin.ToString("yyyy-MM-dd HH:mm:ss")
+                                    }
+                                    else
+                                    {
+                                        <span class="text-muted">Never</span>
+                                    }
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <div class="alert alert-info">
+                <p>No users have been registered yet.</p>
+            </div>
+        }
+    </div>
+</div>
+
+<p>
+    <a href="@Url.Action("SignUp", "Account")" class="btn btn-primary">Register New User</a>
+</p>

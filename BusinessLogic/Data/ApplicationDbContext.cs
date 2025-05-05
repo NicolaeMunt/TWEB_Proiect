@@ -8,6 +8,7 @@ namespace BusinessLogic.Data
     {
         public ApplicationDbContext() : base("DefaultConnection")
         {
+            this.Database.Log = s => System.Diagnostics.Debug.WriteLine(s);
         }
 
         public DbSet<User> Users { get; set; }

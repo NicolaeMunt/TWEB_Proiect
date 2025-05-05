@@ -18,8 +18,15 @@ namespace TWEB_Proiect
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-            // Initialize database
-            Database.SetInitializer(new CreateDatabaseIfNotExists<ApplicationDbContext>());
+            // Database initialization - add these lines
+            System.Data.Entity.Database.SetInitializer(new System.Data.Entity.CreateDatabaseIfNotExists<BusinessLogic.Data.ApplicationDbContext>());
+
+            // Force database creation and schema application
+            using (var context = new BusinessLogic.Data.ApplicationDbContext())
+            {
+                context.Database.Initialize(force: true);
+                System.Diagnostics.Debug.WriteLine("Database initialization attempted");
+            }
         }
     }
 }

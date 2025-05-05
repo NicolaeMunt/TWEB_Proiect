@@ -2,6 +2,13 @@
 @{
     ViewBag.Title = "LogIn";
 }
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["SuccessMessage"]
+    </div>
+}
 <body>
     <div class="modal-wrap">
         <div class="modal-bodies">

@@ -69,5 +69,62 @@ namespace TWEB_Proiect.Controllers
 
             return View();
         }
+
+        // Add to HomeController
+        public ActionResult TestConnection()
+        {
+            try
+            {
+                using (var context = new BusinessLogic.Data.ApplicationDbContext())
+                {
+                    ViewBag.ConnectionString = context.Database.Connection.ConnectionString;
+                    ViewBag.DatabaseExists = context.Database.Exists();
+                    ViewBag.CanConnect = false;
+
+                    // Test actual connection
+                    context.Database.Connection.Open();
+                    ViewBag.CanConnect = true;
+                    context.Database.Connection.Close();
+                }
+                ViewBag.Success = true;
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Success = false;
+                ViewBag.ErrorMessage = ex.Message;
+            }
+
+            return View();
+        }
+
+        public ActionResult UserList()
+        {
+            try
+            {
+                using (var context = new BusinessLogic.Data.ApplicationDbContext())
+                {
+                    // Get all users from the database
+                    var users = context.Users.ToList();
+
+                    // Get associated login data (optional)
+                    var loginData = context.LoginData.ToList();
+
+                    // Pass login data to view for showing last login time
+                    ViewBag.LoginData = loginData;
+
+                    // Pass connection status info for debugging
+                    ViewBag.ConnectionString = context.Database.Connection.ConnectionString;
+                    ViewBag.DatabaseName = context.Database.Connection.Database;
+
+                    return View(users);
+                }
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Error = ex.Message;
+                ViewBag.StackTrace = ex.StackTrace;
+                return View(new List<Domain.Entities.User.User>());
+            }
+        }
     }
 }

@@ -1,0 +1,21 @@
+﻿
+@{
+    ViewBag.Title = "ConnectionTest";
+}
+
+<h2>Database Connection Test</h2>
+
+@if (ViewBag.Success)
+{
+    <div class="alert alert-success">
+        <p><strong>Connection string:</strong> @ViewBag.ConnectionString</p>
+        <p><strong>Database exists:</strong> @ViewBag.DatabaseExists</p>
+        <p><strong>Can connect:</strong> @ViewBag.CanConnect</p>
+    </div>
+}
+else
+{
+    <div class="alert alert-danger">
+        <p><strong>Connection failed:</strong> @ViewBag.ErrorMessage</p>
+    </div>
+}
