@@ -38,19 +38,35 @@ namespace BusinessLogic.Repositories
                 {
                     // Add user first
                     _context.Users.Add(user);
+
+                    // Force save to get the user ID
                     _context.SaveChanges();
+                    System.Diagnostics.Debug.WriteLine($"User saved with ID: {user.Id}");
 
                     // Set UserId on login data and add it
                     loginData.UserId = user.Id;
                     _context.LoginData.Add(loginData);
-                    _context.SaveChanges();
 
+                    // Force save to add login data
+                    _context.SaveChanges();
+                    System.Diagnostics.Debug.WriteLine($"Login data saved with ID: {loginData.Id}");
+
+                    // Commit transaction
                     transaction.Commit();
+                    System.Diagnostics.Debug.WriteLine("Transaction committed successfully");
+
                     return user.Id;
                 }
-                catch
+                catch (Exception ex)
                 {
+                    // Log exception details
+                    System.Diagnostics.Debug.WriteLine($"Database error: {ex.Message}");
+                    System.Diagnostics.Debug.WriteLine($"Stack trace: {ex.StackTrace}");
+
+                    // Rollback transaction
                     transaction.Rollback();
+                    System.Diagnostics.Debug.WriteLine("Transaction rolled back");
+
                     throw;
                 }
             }

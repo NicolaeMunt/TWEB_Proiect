@@ -5,7 +5,7 @@ using System.Web.Mvc;
 using System.Web.Mvc.Filters;
 using System.Web.Routing;
 
-namespace TWEB_Project.Filters
+namespace TWEB_Proiect.Filters
 {
     public class AuthenticationFilter : ActionFilterAttribute, IAuthenticationFilter
     {

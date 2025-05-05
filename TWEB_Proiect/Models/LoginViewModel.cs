@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace TWEB_Project.Models
+namespace TWEB_Proiect.Models
 {
     public class LoginViewModel
     {

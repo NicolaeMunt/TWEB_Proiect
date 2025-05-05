@@ -3,9 +3,9 @@ using Domain.Interfaces;
 using System;
 using System.Web;
 using System.Web.Mvc;
-using TWEB_Project.Models;
+using TWEB_Proiect.Models;
 
-namespace TWEB_Project.Controllers
+namespace TWEB_Proiect.Controllers
 {
     public class AccountController : Controller
     {
@@ -72,6 +72,7 @@ namespace TWEB_Project.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Register(RegisterViewModel model)
         {
+            System.Diagnostics.Debug.WriteLine($"Register action called - Username: {model.Username}, Email: {model.Email}");
             if (ModelState.IsValid)
             {
                 var user = new User

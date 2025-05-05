@@ -2,10 +2,10 @@ using System.Linq;
 using System.Web.Mvc;
 using Unity.AspNet.Mvc;
 
-[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(TWEB_Project.UnityMvcActivator), nameof(TWEB_Project.UnityMvcActivator.Start))]
-[assembly: WebActivatorEx.ApplicationShutdownMethod(typeof(TWEB_Project.UnityMvcActivator), nameof(TWEB_Project.UnityMvcActivator.Shutdown))]
+[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(TWEB_Proiect.UnityMvcActivator), nameof(TWEB_Proiect.UnityMvcActivator.Start))]
+[assembly: WebActivatorEx.ApplicationShutdownMethod(typeof(TWEB_Proiect.UnityMvcActivator), nameof(TWEB_Proiect.UnityMvcActivator.Shutdown))]
 
-namespace TWEB_Project
+namespace TWEB_Proiect
 {
     public static class UnityMvcActivator
     {

@@ -6,7 +6,7 @@ using System;
 using Unity;
 using Unity.Lifetime;
 
-namespace TWEB_Project
+namespace TWEB_Proiect
 {
     public static class UnityConfig
     {

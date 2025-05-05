@@ -47,5 +47,27 @@ namespace TWEB_Proiect.Controllers
             ViewBag.HideFooter = true;
             return View();
         }
+
+        public ActionResult TestDbConnection()
+        {
+            try
+            {
+                using (var context = new BusinessLogic.Data.ApplicationDbContext())
+                {
+                    // Try to access the database
+                    bool canConnect = context.Database.Exists();
+                    ViewBag.ConnectionStatus = canConnect ? "Connection successful!" : "Database doesn't exist";
+                    ViewBag.DbName = context.Database.Connection.Database;
+                    ViewBag.ConnectionString = context.Database.Connection.ConnectionString;
+                }
+            }
+            catch (Exception ex)
+            {
+                ViewBag.ConnectionStatus = "Connection failed!";
+                ViewBag.ErrorMessage = ex.Message;
+            }
+
+            return View();
+        }
     }
 }

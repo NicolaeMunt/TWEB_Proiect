@@ -1,20 +1,37 @@
-﻿
+﻿@model TWEB_Proiect.Models.RegisterViewModel
 @{
     ViewBag.Title = "SignUp";
 }
-
-
 <div class="modal-wrap">
-
     <div class="modal-bodies">
         <div class="modal-body modal-body-step-1 is-showing">
             <div class="title">Sign Up</div>
             <div class="description">Hello there, Register Form</div>
-            <form>
-                <input type="text" placeholder="Username*" />
-                <input type="email" placeholder="E-Mail*" />
-                <input type="password" placeholder="Password*" />
-                <input type="con-password" placeholder="Confirm Password*" />
+            @using (Html.BeginForm("SIgnUp", "Home", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                <div class="form-group">
+                    @Html.TextBoxFor(m => m.Username, new { placeholder = "Username*" })
+                    @Html.ValidationMessageFor(m => m.Username, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group">
+                    @Html.TextBoxFor(m => m.Email, new { placeholder = "E-Mail*", type = "email" })
+                    @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group">
+                    @Html.PasswordFor(m => m.Password, new { placeholder = "Password*" })
+                    @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group">
+                    @Html.PasswordFor(m => m.ConfirmPassword, new { placeholder = "Confirm Password*" })
+                    @Html.ValidationMessageFor(m => m.ConfirmPassword, "", new { @class = "text-danger" })
+                </div>
+
                 <div class="col-md-4">
                     <div class="row text-center sign-with">
                         <div class="col-md-12">
@@ -31,16 +48,14 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="text-center">
-                    <div class="button">Sign Up</div>
-
+                    <button type="submit" class="button">Sign Up</button>
                 </div>
-            </form>
+            }
         </div>
-
-
     </div>
 </div>
 <script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
-
-
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

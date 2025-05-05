@@ -1,31 +1,40 @@
-﻿
+﻿@model TWEB_Proiect.Models.LoginViewModel
 @{
     ViewBag.Title = "LogIn";
 }
-
-<!DOCTYPE html>
-<html>
 <body>
-
     <div class="modal-wrap">
-
         <div class="modal-bodies">
             <div class="modal-body modal-body-step-1 is-showing">
                 <div class="title">Log In</div>
                 <div class="description">Hello there, Log In</div>
-                <form>
-                    <input type="text" placeholder="Name" />
-                    <input type="email" placeholder="Email" />
-                    <div class="text-center">
-                        <div class="button">LOG IN</div>
-                        <a href="@Url.Action("SignUp", "Home")"><div class="button">Create an account</div> </a>
+                @using (Html.BeginForm("LogIn", "Home", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                    <div class="form-group">
+                        @Html.TextBoxFor(m => m.Username, new { placeholder = "Username" })
+                        @Html.ValidationMessageFor(m => m.Username, "", new { @class = "text-danger" })
                     </div>
-                </form>
+
+                    <div class="form-group">
+                        @Html.PasswordFor(m => m.Password, new { placeholder = "Password" })
+                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group">
+                        @Html.CheckBoxFor(m => m.RememberMe)
+                        @Html.LabelFor(m => m.RememberMe)
+                    </div>
+
+                    <div class="text-center">
+                        <button type="submit" class="button">LOG IN</button>
+                        <a href="@Url.Action("SignUp", "Home")"><div class="button">Create an account</div></a>
+                    </div>
+                }
             </div>
-            
         </div>
-
-
     </div>
     <div class="modal-footer">
         <div class="text-center">
@@ -33,8 +42,6 @@
         </div>
     </div>
     <script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
-
-
-
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 </body>
-</html>
