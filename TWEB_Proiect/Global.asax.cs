@@ -1,11 +1,12 @@
-﻿using BusinessLogic.Data;
-using System;
-using System.Data.Entity;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
-
+using TWEB_Proiect.Data;           // Правильное пространство имен
+using TWEB_Proiect.Domain.Entities; // Если нужны сущности
 
 namespace TWEB_Proiect
 {
@@ -13,20 +14,18 @@ namespace TWEB_Proiect
     {
         protected void Application_Start()
         {
+            using (var context = new TWEB_Proiect.Data.ApplicationDbContext())
+            {
+                context.Database.CreateIfNotExists();
+            }
+
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-            // Database initialization - add these lines
-            System.Data.Entity.Database.SetInitializer(new CreateDatabaseIfNotExists<BusinessLogic.Data.ApplicationDbContext>());
-
-            // Force database creation and schema application
-            using (var context = new BusinessLogic.Data.ApplicationDbContext())
-            {
-                context.Database.Initialize(force: true);
-                System.Diagnostics.Debug.WriteLine("Database initialization attempted");
-            }
+            // Если есть инициализация базы данных:
+            System.Data.Entity.Database.SetInitializer(new System.Data.Entity.DropCreateDatabaseIfModelChanges<ApplicationDbContext>());
         }
     }
 }

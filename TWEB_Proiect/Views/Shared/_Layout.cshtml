@@ -7,24 +7,59 @@
 
     @* -------------  CSS  bundles ------------- *@
     @Styles.Render("~/Content/css")
+    <link href="~/Content/css/Style-blue-theme.css" rel="stylesheet" />
 
     @* -------------  per-view extra <head> stuff ------------- *@
     @RenderSection("Head", required: false)
 </head>
-<link href="~/Content/css/Style-blue-theme.css" rel="stylesheet" />
 <body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("INJÎNER", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Acasă", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Despre", "About", "Home")</li>
+                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    @if (Session["UserId"] != null)
+                    {
+                        <li>@Html.ActionLink("Salut, " + Session["Username"], "Index", "Home")</li>
+                        <li>@Html.ActionLink("Ieșire", "Logout", "Account")</li>
+                    }
+                    else
+                    {
+                        <li>@Html.ActionLink("Registrare", "Register", "Account")</li>
+                        <li>@Html.ActionLink("Intrare", "Login", "Account")</li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </nav>
+
     @Html.Partial("_NavBar")
 
     <main role="main" class="container">
         @RenderBody()
     </main>
+
     @if (ViewBag.HideFooter == null || ViewBag.HideFooter == false)
     {
         @Html.Partial("_Footer")
     }
+
     @* -------------  JS  bundles (order matters!) ------------- *@
-    @Scripts.Render("~/bundles/bootstrap",   // includes jQuery + Bootstrap now
-                "~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/bootstrap", "~/bundles/jqueryval")
+
     @* -------------  per-view extra scripts ------------- *@
     @RenderSection("Scripts", required: false)
 </body>
