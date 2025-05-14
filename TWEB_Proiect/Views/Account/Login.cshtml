@@ -221,7 +221,7 @@
     <div class="login-form-container">
         <h2>@ViewBag.Title</h2>
 
-        @using (Html.BeginForm("Logare", "Cont", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+        @using (Html.BeginForm("Login", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
         {
             @Html.AntiForgeryToken()
             <h4>Bine ai venit</h4>

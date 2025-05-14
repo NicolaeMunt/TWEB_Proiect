@@ -168,7 +168,7 @@
     <div class="register-form-container">
         <h2>@ViewBag.Title</h2>
 
-        @using (Html.BeginForm("Înregistrare", "Cont", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+        @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
         {
             @Html.AntiForgeryToken()
             <h4>Devină o parte a comunității.</h4>

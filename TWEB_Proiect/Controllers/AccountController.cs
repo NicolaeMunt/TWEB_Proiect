@@ -3,7 +3,7 @@ using System.Linq;
 using System.Web.Mvc;
 using TWEB_Proiect.Models;
 using TWEB_Proiect.Data;
-using TWEB_Proiect.Domain.Entities;
+using TWEB_Proiect.Domain.Entities; // Для User класса
 
 namespace TWEB_Proiect.Controllers
 {
@@ -26,7 +26,7 @@ namespace TWEB_Proiect.Controllers
             {
                 try
                 {
-                    // Используем полное имя класса для избежания конфликта
+                    // Используем TWEB_Proiect.Domain.Entities.User
                     var user = db.Users.FirstOrDefault(u => u.Email == model.Email && u.Password == model.Password);
 
                     if (user != null)
@@ -41,12 +41,12 @@ namespace TWEB_Proiect.Controllers
                     }
                     else
                     {
-                        ModelState.AddModelError("", "Invalid email or password.");
+                        ModelState.AddModelError("", "Email sau parolă incorectă.");
                     }
                 }
                 catch (Exception ex)
                 {
-                    ModelState.AddModelError("", "Database error: " + ex.Message);
+                    ModelState.AddModelError("", "Eroare la baza de date: " + ex.Message);
                 }
             }
 
@@ -71,13 +71,15 @@ namespace TWEB_Proiect.Controllers
                     var existingUser = db.Users.FirstOrDefault(u => u.Email == model.Email);
                     if (existingUser == null)
                     {
-                        // Используем полное имя класса
-                        var user = new Domain.Entities.User
+                        // Используем TWEB_Proiect.Domain.Entities.User
+                        var user = new TWEB_Proiect.Domain.Entities.User
                         {
                             Username = model.Username,
                             Email = model.Email,
                             Password = model.Password,
-                            LoginTime = DateTime.Now
+                            LoginTime = DateTime.Now,
+                            CreatedDate = DateTime.Now,
+                            IsActive = true
                         };
 
                         db.Users.Add(user);
@@ -90,12 +92,12 @@ namespace TWEB_Proiect.Controllers
                     }
                     else
                     {
-                        ModelState.AddModelError("", "User with this email already exists.");
+                        ModelState.AddModelError("", "Un utilizator cu acest email există deja.");
                     }
                 }
                 catch (Exception ex)
                 {
-                    ModelState.AddModelError("", "Database error: " + ex.Message);
+                    ModelState.AddModelError("", "Eroare la baza de date: " + ex.Message);
                 }
             }
 

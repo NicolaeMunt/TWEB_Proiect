@@ -1,0 +1,207 @@
+﻿@model IEnumerable<TWEB_Proiect.Domain.Entities.Question>
+
+@{
+    ViewBag.Title = "Questions";
+}
+
+@section Head {
+    <style>
+        .questions-list-container {
+            background: linear-gradient(135deg, #1a237e 0%, #3949ab 50%, #7986cb 100%);
+            min-height: calc(100vh - 200px);
+            padding: 40px 0;
+        }
+
+        .questions-header {
+            background: rgba(26, 35, 126, 0.9);
+            padding: 20px 0;
+            margin-bottom: 40px;
+            border-bottom: 2px solid #7c4dff;
+        }
+
+            .questions-header h3 {
+                color: #ffffff;
+                font-size: 28px;
+                font-weight: 700;
+                margin: 0;
+            }
+
+        .question-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(124, 77, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+            .question-card:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
+                border-color: #7c4dff;
+            }
+
+        .question-title {
+            color: #1a237e;
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-decoration: none;
+        }
+
+            .question-title:hover {
+                color: #7c4dff;
+                text-decoration: none;
+            }
+
+        .question-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            font-size: 13px;
+            color: #666;
+        }
+
+        .question-category {
+            background: linear-gradient(45deg, #7c4dff, #ba68c8);
+            color: #ffffff;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: 600;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+        }
+
+        .question-details {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .question-stats {
+            display: flex;
+            gap: 20px;
+            font-size: 13px;
+            color: #7c4dff;
+            font-weight: 600;
+        }
+
+            .question-stats i {
+                margin-right: 5px;
+            }
+
+        .no-questions {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 40px;
+            text-align: center;
+            color: #666;
+        }
+
+        .ask-question-btn {
+            display: inline-block;
+            background: linear-gradient(45deg, #7c4dff, #ba68c8);
+            color: #ffffff;
+            padding: 12px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+        }
+
+            .ask-question-btn:hover {
+                background: linear-gradient(45deg, #9c27b0, #d81b60);
+                transform: translateY(-2px);
+                box-shadow: 0 8px 25px rgba(124, 77, 255, 0.4);
+                color: #ffffff;
+                text-decoration: none;
+            }
+    </style>
+}
+
+<div class="questions-list-container">
+    <!-- Header Section -->
+    <section class="questions-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <h3>All Questions</h3>
+                </div>
+                <div class="col-md-4 text-right">
+                    <a href="@Url.Action("Ask", "Question")" class="ask-question-btn">
+                        <i class="fa fa-plus"></i> Ask Question
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Questions List -->
+    <section class="questions-content">
+        <div class="container">
+            @if (Model != null && Model.Any())
+            {
+                foreach (var question in Model)
+                {
+                    <div class="question-card">
+                        <div class="question-meta">
+                            <div>
+                                <i class="fa fa-user"></i> @question.Username
+                                <span style="margin-left: 15px;">
+                                    <i class="fa fa-clock-o"></i> @question.CreatedDate.ToString("dd MMM yyyy, HH:mm")
+                                </span>
+                            </div>
+                            <span class="question-category">@question.Category</span>
+                        </div>
+
+                        <h4>
+                            <a href="@Url.Action("Details", "Question", new { id = question.Id })" class="question-title">
+                                @question.Title
+                            </a>
+                        </h4>
+
+                        <div class="question-details">
+                            @if (question.Details.Length > 200)
+                            {
+                                @(question.Details.Substring(0, 200) + "...")
+                            }
+                            else
+                            {
+                                @question.Details
+                            }
+                        </div>
+
+                        <div class="question-stats">
+                            <span><i class="fa fa-eye"></i> @question.Views Views</span>
+                            <span><i class="fa fa-comment"></i> @question.Answers Answers</span>
+                            @if (question.IsResolved)
+                            {
+                                <span style="color: #4caf50;"><i class="fa fa-check"></i> Resolved</span>
+                            }
+                            @if (!string.IsNullOrEmpty(question.AttachmentPath))
+                            {
+                                <span><i class="fa fa-paperclip"></i> Attachment</span>
+                            }
+                        </div>
+                    </div>
+                }
+            }
+            else
+            {
+                <div class="no-questions">
+                    <i class="fa fa-question-circle" style="font-size: 48px; color: #7c4dff; margin-bottom: 20px;"></i>
+                    <h4>No Questions Yet</h4>
+                    <p>Be the first to ask a question in our community!</p>
+                    <a href="@Url.Action("Ask", "Question")" class="ask-question-btn">
+                        <i class="fa fa-plus"></i> Ask First Question
+                    </a>
+                </div>
+            }
+        </div>
+    </section>
+</div>

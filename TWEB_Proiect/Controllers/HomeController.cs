@@ -2,7 +2,6 @@
 using System.Linq;
 using System.Web.Mvc;
 using TWEB_Proiect.Data;
-using TWEB_Proiect.Domain.Entities;
 
 namespace TWEB_Proiect.Controllers
 {
@@ -10,18 +9,25 @@ namespace TWEB_Proiect.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
+        // ТОЛЬКО ОДИН метод Ask_Question
+        public ActionResult Ask_Question()
+        {
+            return RedirectToAction("Ask", "Question");
+        }
+
         public ActionResult Index()
         {
             ViewBag.Title = "Home Page";
 
-            // Простая статистика пользователей
             try
             {
                 ViewBag.UserCount = db.Users.Count();
+                ViewBag.QuestionCount = db.Questions.Count();
             }
             catch
             {
                 ViewBag.UserCount = 0;
+                ViewBag.QuestionCount = 0;
             }
 
             return View();
@@ -39,19 +45,10 @@ namespace TWEB_Proiect.Controllers
             return View();
         }
 
-        // Простой метод для отображения пользователей
-        public ActionResult Users()
+        public ActionResult Blog()
         {
-            try
-            {
-                var users = db.Users.ToList();
-                return View(users);
-            }
-            catch (Exception ex)
-            {
-                ViewBag.Error = ex.Message;
-                return View();
-            }
+            ViewBag.Message = "Blog page.";
+            return View();
         }
 
         protected override void Dispose(bool disposing)

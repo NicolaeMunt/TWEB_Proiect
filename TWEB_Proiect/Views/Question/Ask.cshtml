@@ -1,0 +1,330 @@
+﻿@model TWEB_Proiect.Models.QuestionViewModel
+
+@{
+    ViewBag.Title = "Ask Question";
+}
+
+@section Head {
+    <style>
+        .ask-question-container {
+            background: linear-gradient(135deg, #1a237e 0%, #3949ab 50%, #7986cb 100%);
+            min-height: calc(100vh - 200px);
+            padding: 40px 0;
+        }
+
+        .header-section {
+            background: rgba(26, 35, 126, 0.9);
+            padding: 20px 0;
+            margin-bottom: 40px;
+            border-bottom: 2px solid #7c4dff;
+        }
+
+            .header-section h3 {
+                color: #ffffff;
+                font-size: 28px;
+                font-weight: 700;
+                margin: 0;
+            }
+
+        .breadcrumb-custom {
+            background: transparent;
+            padding: 10px 0;
+            margin: 0;
+        }
+
+            .breadcrumb-custom a {
+                color: #ce93d8;
+                text-decoration: none;
+                font-weight: 500;
+            }
+
+                .breadcrumb-custom a:hover {
+                    color: #ffffff;
+                }
+
+            .breadcrumb-custom .active {
+                color: #ffffff;
+            }
+
+        .question-form-container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(124, 77, 255, 0.3);
+            margin-bottom: 40px;
+        }
+
+            .question-form-container h4 {
+                color: #7c4dff;
+                font-size: 24px;
+                font-weight: 700;
+                margin-bottom: 20px;
+                text-align: center;
+            }
+
+        .form-group {
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .control-label {
+            color: #7c4dff;
+            font-weight: 600;
+            margin-bottom: 8px;
+            display: block;
+            font-size: 14px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 15px 20px;
+            font-size: 16px;
+            color: #1a237e;
+            background: rgba(124, 77, 255, 0.05);
+            border: 2px solid rgba(124, 77, 255, 0.3);
+            border-radius: 25px;
+            outline: none;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            box-sizing: border-box;
+        }
+
+            .form-control:focus {
+                border-color: #7c4dff;
+                background: rgba(124, 77, 255, 0.1);
+                box-shadow: 0 0 15px rgba(124, 77, 255, 0.3);
+            }
+
+            .form-control::placeholder {
+                color: rgba(26, 35, 126, 0.6);
+                font-weight: 500;
+            }
+
+        select.form-control {
+            height: 50px;
+            cursor: pointer;
+        }
+
+        .file-input-wrapper {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .file-input {
+            position: absolute;
+            left: 0;
+            top: 0;
+            opacity: 0;
+            cursor: pointer;
+            width: 100%;
+            height: 50px;
+        }
+
+        .file-input-button {
+            display: inline-block;
+            padding: 15px 20px;
+            background: rgba(124, 77, 255, 0.1);
+            border: 2px dashed rgba(124, 77, 255, 0.5);
+            border-radius: 25px;
+            color: #7c4dff;
+            font-weight: 600;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+            .file-input-button:hover {
+                background: rgba(124, 77, 255, 0.2);
+                border-color: #7c4dff;
+            }
+
+        .question-details-textarea {
+            min-height: 150px;
+            border-radius: 15px;
+            resize: vertical;
+            font-family: inherit;
+        }
+
+        .btn-publish {
+            width: 100%;
+            height: 50px;
+            background: linear-gradient(45deg, #7c4dff, #ba68c8);
+            color: #ffffff;
+            border: none;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.4);
+            margin-top: 30px;
+        }
+
+            .btn-publish:hover {
+                background: linear-gradient(45deg, #9c27b0, #d81b60);
+                transform: translateY(-2px);
+                box-shadow: 0 8px 25px rgba(124, 77, 255, 0.4);
+            }
+
+        .text-danger {
+            color: #f44336 !important;
+            font-size: 12px;
+            margin-top: 5px;
+            display: block;
+        }
+
+        .validation-summary-errors {
+            background: rgba(244, 67, 54, 0.1);
+            border: 1px solid #f44336;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 20px;
+            color: #f44336;
+        }
+
+        .success-message {
+            background: rgba(76, 175, 80, 0.1);
+            border: 1px solid #4caf50;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 20px;
+            color: #4caf50;
+            text-align: center;
+            font-weight: 600;
+        }
+    </style>
+}
+
+@* Медиа-запросы для адаптивности вынесены в отдельную секцию *@
+@section Scripts {
+    <style>
+        /* Responsive Design - используем @@ чтобы избежать конфликта с Razor */
+        @@media (max-width: 768px) {
+            .question-form-container {
+                padding: 20px;
+                margin: 20px 10px;
+            }
+
+            .header-section h3 {
+                font-size: 24px;
+            }
+        }
+
+        @@media (max-width: 480px) {
+            .question-form-container {
+                padding: 15px;
+            }
+        }
+    </style>
+
+    <script>
+        // Обновляем текст кнопки при выборе файла
+        $('input[type="file"]').change(function () {
+            var fileName = $(this).val().split('\\').pop();
+            if (fileName) {
+                $(this).siblings('.file-input-button').html('<i class="fa fa-check"></i> ' + fileName);
+            } else {
+                $(this).siblings('.file-input-button').html('<i class="fa fa-cloud-upload"></i> Choose File (Optional)');
+            }
+        });
+
+        // Анимация при отправке формы
+        $('.question-form').submit(function () {
+            $('.btn-publish').html('<i class="fa fa-spinner fa-spin"></i> Publishing...');
+        });
+    </script>
+}
+
+<div class="ask-question-container">
+    <!-- Header Section -->
+    <section class="header-section">
+        <div class="container">
+            <h3>Ask Question</h3>
+            <ol class="breadcrumb breadcrumb-custom">
+                <li><a href="@Url.Action("Index", "Home")">Home</a></li>
+                <li class="active">Ask Question</li>
+            </ol>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <section class="main-content">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <div class="question-form-container">
+                        <h4>Ask Your Question</h4>
+
+                        @if (TempData["SuccessMessage"] != null)
+                        {
+                            <div class="success-message">
+                                @TempData["SuccessMessage"]
+                            </div>
+                        }
+
+                        @using (Html.BeginForm("Ask", "Question", FormMethod.Post, new { @class = "question-form", enctype = "multipart/form-data" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger validation-summary-errors" })
+
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Username, new { @class = "control-label" })
+                                @Html.TextBoxFor(m => m.Username, new { @class = "form-control", placeholder = "Introdu numele tău" })
+                                @Html.ValidationMessageFor(m => m.Username, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Email, new { @class = "control-label" })
+                                @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "Introdu emailul tău" })
+                                @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.QuestionTitle, new { @class = "control-label" })
+                                @Html.TextBoxFor(m => m.QuestionTitle, new { @class = "form-control", placeholder = "Scrie titlul întrebării tale" })
+                                @Html.ValidationMessageFor(m => m.QuestionTitle, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Category, new { @class = "control-label" })
+                                @Html.DropDownListFor(m => m.Category,
+                                    new SelectList(TWEB_Proiect.Models.QuestionCategories.Categories),
+                                    "-- Selectează Categoria --",
+                                    new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.Category, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Attachment, new { @class = "control-label" })
+                                <div class="file-input-wrapper">
+                                    @Html.TextBoxFor(m => m.Attachment, new { @type = "file", @class = "file-input", @accept = ".jpg,.jpeg,.png,.gif,.pdf,.doc,.docx" })
+                                    <div class="file-input-button">
+                                        <i class="fa fa-cloud-upload"></i> Alege Fișier (Opțional)
+                                    </div>
+                                </div>
+                                <small style="color: #666; font-size: 12px;">Formate acceptate: JPG, PNG, GIF, PDF, DOC, DOCX</small>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.QuestionDetails, new { @class = "control-label" })
+                                @Html.TextAreaFor(m => m.QuestionDetails, new { @class = "form-control question-details-textarea", placeholder = "Descrie întrebarea ta în detaliu..." })
+                                @Html.ValidationMessageFor(m => m.QuestionDetails, "", new { @class = "text-danger" })
+                            </div>
+
+                            <button type="submit" class="btn-publish">
+                                <i class="fa fa-send"></i> Publică Întrebarea
+                            </button>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

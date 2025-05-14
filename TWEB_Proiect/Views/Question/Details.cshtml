@@ -1,0 +1,249 @@
+﻿@model TWEB_Proiect.Domain.Entities.Question
+
+@{
+    ViewBag.Title = "Question Details";
+}
+
+@section Head {
+    <style>
+        .question-details-container {
+            background: linear-gradient(135deg, #1a237e 0%, #3949ab 50%, #7986cb 100%);
+            min-height: calc(100vh - 200px);
+            padding: 40px 0;
+        }
+
+        .question-details-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(124, 77, 255, 0.3);
+        }
+
+        .question-header {
+            border-bottom: 2px solid rgba(124, 77, 255, 0.3);
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        .question-title {
+            color: #1a237e;
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .question-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .question-author {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .question-category {
+            background: linear-gradient(45deg, #7c4dff, #ba68c8);
+            color: #ffffff;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+        }
+
+        .question-content {
+            color: #333;
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 30px;
+            white-space: pre-wrap;
+        }
+
+        .question-stats {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: rgba(124, 77, 255, 0.05);
+            border-radius: 15px;
+        }
+
+        .stat-item {
+            text-align: center;
+            color: #7c4dff;
+            font-weight: 600;
+        }
+
+        .stat-number {
+            font-size: 24px;
+            font-weight: 700;
+            display: block;
+        }
+
+        .attachment-section {
+            background: rgba(124, 77, 255, 0.05);
+            border: 2px dashed rgba(124, 77, 255, 0.3);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .attachment-link {
+            display: inline-block;
+            background: linear-gradient(45deg, #7c4dff, #ba68c8);
+            color: #ffffff;
+            padding: 10px 20px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+            .attachment-link:hover {
+                background: linear-gradient(45deg, #9c27b0, #d81b60);
+                transform: scale(1.05);
+                color: #ffffff;
+                text-decoration: none;
+            }
+
+        .back-button {
+            display: inline-block;
+            background: rgba(124, 77, 255, 0.1);
+            color: #7c4dff;
+            padding: 10px 20px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-bottom: 20px;
+        }
+
+            .back-button:hover {
+                background: rgba(124, 77, 255, 0.2);
+                color: #7c4dff;
+                text-decoration: none;
+            }
+
+        .resolved-badge {
+            background: #4caf50;
+            color: #ffffff;
+            padding: 5px 15px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .date-info {
+            color: #666;
+            font-size: 14px;
+        }
+    </style>
+}
+
+<div class="question-details-container">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <a href="@Url.Action("List", "Question")" class="back-button">
+                    <i class="fa fa-arrow-left"></i> Back to Questions
+                </a>
+
+                @if (Model != null)
+                {
+                    <div class="question-details-card">
+                        <div class="question-header">
+                            <h1 class="question-title">@Model.Title</h1>
+
+                            <div class="question-meta">
+                                <div class="question-author">
+                                    <div>
+                                        <strong><i class="fa fa-user"></i> @Model.Username</strong>
+                                        <div class="date-info">
+                                            <i class="fa fa-clock-o"></i> @Model.CreatedDate.ToString("dd MMMM yyyy, HH:mm")
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <span class="question-category">@Model.Category</span>
+                                    @if (Model.IsResolved)
+                                    {
+                                        <span class="resolved-badge">
+                                            <i class="fa fa-check"></i> Resolved
+                                        </span>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="question-stats">
+                            <div class="stat-item">
+                                <span class="stat-number">@Model.Views</span>
+                                <span>Views</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">@Model.Answers</span>
+                                <span>Answers</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">
+                                    @if (Model.IsResolved)
+                                    {
+                                        <i class="fa fa-check" style="color: #4caf50;"></i>
+                                    }
+                                    else
+                                    {
+                                        <i class="fa fa-clock-o" style="color: #ff9800;"></i>
+                                    }
+                                </span>
+                                <span>Status</span>
+                            </div>
+                        </div>
+
+                        <div class="question-content">
+                            @Model.Details
+                        </div>
+
+                        @if (!string.IsNullOrEmpty(Model.AttachmentPath))
+                        {
+                            <div class="attachment-section">
+                                <h4 style="color: #7c4dff; margin-bottom: 15px;">
+                                    <i class="fa fa-paperclip"></i> Attachment
+                                </h4>
+                                <a href="@Url.Content(Model.AttachmentPath)" class="attachment-link" target="_blank">
+                                    <i class="fa fa-download"></i> Download Attachment
+                                </a>
+                            </div>
+                        }
+
+                        <div style="text-align: center; margin-top: 30px;">
+                            <a href="@Url.Action("Ask", "Question")" class="attachment-link">
+                                <i class="fa fa-plus"></i> Ask Your Question
+                            </a>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <div class="question-details-card">
+                        <div style="text-align: center; color: #666;">
+                            <i class="fa fa-exclamation-triangle" style="font-size: 48px; margin-bottom: 20px;"></i>
+                            <h4>Question Not Found</h4>
+                            <p>The question you're looking for doesn't exist or has been removed.</p>
+                            <a href="@Url.Action("List", "Question")" class="attachment-link">
+                                <i class="fa fa-list"></i> View All Questions
+                            </a>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
