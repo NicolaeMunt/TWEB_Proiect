@@ -3234,3 +3234,137 @@ a, button, .btn, input, textarea, select {
     margin-top: 5px !important;
     text-align: center !important;
 }
+@* Добавить в начало Index.cshtml после @model *@ @section Styles {
+    <style >
+    /* Стили для табов */
+    #main {
+        width: 100%;
+        position: relative;
+    }
+
+    #main input[type="radio"] {
+        display: none;
+    }
+
+    #main label {
+        display: inline-block;
+        padding: 12px 20px;
+        background: #f8f9fa;
+        border: 2px solid #e9ecef;
+        margin-right: 5px;
+        cursor: pointer;
+        border-radius: 8px 8px 0 0;
+        font-weight: 600;
+        color: #6c757d;
+        transition: all 0.3s ease;
+        position: relative;
+        z-index: 2;
+    }
+
+        #main label:hover {
+            background: #e9ecef;
+            color: #495057;
+            transform: translateY(-2px);
+        }
+
+    #main input[type="radio"]:checked + label {
+        background: #7c4dff;
+        color: white;
+        border-color: #7c4dff;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(124, 77, 255, 0.3);
+    }
+
+    #main section {
+        display: none;
+        padding: 30px 0;
+        border-top: 3px solid #7c4dff;
+        background: #ffffff;
+        position: relative;
+        z-index: 1;
+        border-radius: 0 8px 8px 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    #main #tab1:checked ~ #content1,
+    #main #tab2:checked ~ #content2,
+    #main #tab3:checked ~ #content3,
+    #main #tab4:checked ~ #content4,
+    #main #tab5:checked ~ #content5 {
+        display: block;
+        animation: fadeIn 0.3s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .empty-state {
+        text-align: center;
+        padding: 60px 20px;
+        background: #f8f9fa;
+        border-radius: 15px;
+        margin: 20px 0;
+    }
+
+        .empty-state h4 {
+            color: #6c757d;
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+
+        .empty-state p {
+            color: #868e96;
+            margin-bottom: 25px;
+        }
+
+        .empty-state .btn {
+            background: linear-gradient(45deg, #7c4dff, #ba68c8);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+            .empty-state .btn:hover {
+                background: linear-gradient(45deg, #9c27b0, #d81b60);
+                transform: translateY(-2px);
+                box-shadow: 0 8px 25px rgba(124, 77, 255, 0.4);
+                color: white;
+                text-decoration: none;
+            }
+
+    @media (max-width: 768px) {
+        #main label {
+            display: block;
+            margin-bottom: 5px;
+            margin-right: 0;
+            border-radius: 8px;
+            text-align: center;
+            padding: 10px 15px;
+            font-size: 14px;
+        }
+
+        #main section {
+            padding: 20px 10px;
+            border-radius: 8px;
+        }
+
+        .empty-state {
+            padding: 40px 15px;
+        }
+    }
+
+    </style>
+}

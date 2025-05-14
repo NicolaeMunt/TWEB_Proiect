@@ -86,7 +86,8 @@ namespace TWEB_Proiect.Controllers
                     db.SaveChanges();
 
                     TempData["SuccessMessage"] = "Întrebarea ta a fost publicată cu succes!";
-                    return RedirectToAction("List", "Question");
+                    // ИЗМЕНЕНО: перенаправляем на главную страницу
+                    return RedirectToAction("Index", "Home");
                 }
                 catch (Exception ex)
                 {
