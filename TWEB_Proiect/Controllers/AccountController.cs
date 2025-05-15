@@ -3,7 +3,7 @@ using System.Linq;
 using System.Web.Mvc;
 using TWEB_Proiect.Models;
 using TWEB_Proiect.Data;
-using TWEB_Proiect.Domain.Entities; // Для User класса
+using TWEB_Proiect.Domain.Entities;
 
 namespace TWEB_Proiect.Controllers
 {
@@ -12,21 +12,21 @@ namespace TWEB_Proiect.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         [AllowAnonymous]
-        public ActionResult Login()
+        public ActionResult Login(string returnUrl)
         {
+            ViewBag.ReturnUrl = returnUrl;
             return View();
         }
 
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public ActionResult Login(LoginViewModel model)
+        public ActionResult Login(LoginViewModel model, string returnUrl)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
-                    // Используем TWEB_Proiect.Domain.Entities.User
                     var user = db.Users.FirstOrDefault(u => u.Email == model.Email && u.Password == model.Password);
 
                     if (user != null)
@@ -37,6 +37,11 @@ namespace TWEB_Proiect.Controllers
                         Session["UserId"] = user.Id;
                         Session["Username"] = user.Username;
 
+                        // Если есть returnUrl, перенаправляем туда, иначе на главную
+                        if (!string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
+                        {
+                            return Redirect(returnUrl);
+                        }
                         return RedirectToAction("Index", "Home");
                     }
                     else
@@ -50,19 +55,21 @@ namespace TWEB_Proiect.Controllers
                 }
             }
 
+            ViewBag.ReturnUrl = returnUrl;
             return View(model);
         }
 
         [AllowAnonymous]
-        public ActionResult Register()
+        public ActionResult Register(string returnUrl)
         {
+            ViewBag.ReturnUrl = returnUrl;
             return View();
         }
 
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public ActionResult Register(RegisterViewModel model)
+        public ActionResult Register(RegisterViewModel model, string returnUrl)
         {
             if (ModelState.IsValid)
             {
@@ -71,7 +78,6 @@ namespace TWEB_Proiect.Controllers
                     var existingUser = db.Users.FirstOrDefault(u => u.Email == model.Email);
                     if (existingUser == null)
                     {
-                        // Используем TWEB_Proiect.Domain.Entities.User
                         var user = new TWEB_Proiect.Domain.Entities.User
                         {
                             Username = model.Username,
@@ -88,6 +94,11 @@ namespace TWEB_Proiect.Controllers
                         Session["UserId"] = user.Id;
                         Session["Username"] = user.Username;
 
+                        // Если есть returnUrl, перенаправляем туда, иначе на главную
+                        if (!string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
+                        {
+                            return Redirect(returnUrl);
+                        }
                         return RedirectToAction("Index", "Home");
                     }
                     else
@@ -101,6 +112,7 @@ namespace TWEB_Proiect.Controllers
                 }
             }
 
+            ViewBag.ReturnUrl = returnUrl;
             return View(model);
         }
 

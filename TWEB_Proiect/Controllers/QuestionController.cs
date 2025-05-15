@@ -5,7 +5,8 @@ using System.Web.Mvc;
 using System.Collections.Generic;
 using TWEB_Proiect.Models;
 using TWEB_Proiect.Data;
-using TWEB_Proiect.Domain.Entities; // Для Question и User классов
+using TWEB_Proiect.Domain.Entities;
+using TWEB_Proiect.Attributes; // Для SessionAuthorizeAttribute
 
 namespace TWEB_Proiect.Controllers
 {
@@ -13,36 +14,35 @@ namespace TWEB_Proiect.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Question/Ask
+        // GET: Question/Ask - ТРЕБУЕТ АВТОРИЗАЦИИ
+        [SessionAuthorize]
         public ActionResult Ask()
         {
             var model = new QuestionViewModel();
 
-            // Если пользователь авторизован, предзаполняем поля
-            if (Session["UserId"] != null)
+            // Предзаполняем поля авторизованного пользователя
+            try
             {
-                try
+                var userId = (int)Session["UserId"];
+                var user = db.Users.FirstOrDefault(u => u.Id == userId);
+                if (user != null)
                 {
-                    var userId = (int)Session["UserId"];
-                    var user = db.Users.FirstOrDefault(u => u.Id == userId);
-                    if (user != null)
-                    {
-                        model.Username = user.Username;
-                        model.Email = user.Email;
-                    }
+                    model.Username = user.Username;
+                    model.Email = user.Email;
                 }
-                catch (Exception ex)
-                {
-                    ViewBag.Error = "Eroare la încărcarea datelor utilizatorului: " + ex.Message;
-                }
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Error = "Eroare la încărcarea datelor utilizatorului: " + ex.Message;
             }
 
             return View(model);
         }
 
-        // POST: Question/Ask
+        // POST: Question/Ask - ТРЕБУЕТ АВТОРИЗАЦИИ
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [SessionAuthorize]
         public ActionResult Ask(QuestionViewModel model)
         {
             if (ModelState.IsValid)
@@ -76,7 +76,7 @@ namespace TWEB_Proiect.Controllers
                         Details = model.QuestionDetails,
                         AttachmentPath = attachmentPath,
                         CreatedDate = DateTime.Now,
-                        UserId = Session["UserId"] as int?,
+                        UserId = (int)Session["UserId"], // Берем ID авторизованного пользователя
                         Views = 0,
                         Answers = 0,
                         IsResolved = false
@@ -86,7 +86,6 @@ namespace TWEB_Proiect.Controllers
                     db.SaveChanges();
 
                     TempData["SuccessMessage"] = "Întrebarea ta a fost publicată cu succes!";
-                    // ИЗМЕНЕНО: перенаправляем на главную страницу
                     return RedirectToAction("Index", "Home");
                 }
                 catch (Exception ex)
@@ -98,7 +97,7 @@ namespace TWEB_Proiect.Controllers
             return View(model);
         }
 
-        // GET: Question/Details/5
+        // GET: Question/Details/5 - ОТКРЫТ ДЛЯ ВСЕХ
         public ActionResult Details(int id)
         {
             try
@@ -121,7 +120,7 @@ namespace TWEB_Proiect.Controllers
             }
         }
 
-        // GET: Question/List
+        // GET: Question/List - ОТКРЫТ ДЛЯ ВСЕХ
         public ActionResult List()
         {
             try

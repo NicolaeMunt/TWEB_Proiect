@@ -3368,3 +3368,67 @@ a, button, .btn, input, textarea, select {
 
     </style>
 }
+/* Стили для кнопок-ссылок */
+.aboutus022, .join92 {
+    display: inline-block;
+    padding: 10px 20px;
+    background: linear-gradient(45deg, #7c4dff, #ba68c8);
+    color: #ffffff !important;
+    border: none;
+    border-radius: 25px;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none !important;
+    text-align: center;
+    margin: 5px;
+}
+
+    .aboutus022:hover, .join92:hover {
+        background: linear-gradient(45deg, #9c27b0, #d81b60);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(124, 77, 255, 0.4);
+        color: #ffffff !important;
+        text-decoration: none !important;
+    }
+
+    .aboutus022:focus, .join92:focus {
+        color: #ffffff !important;
+        text-decoration: none !important;
+        outline: none;
+    }
+
+/* Исправляем стили для кнопок в карточках вопросов */
+.q-type238, .q-type23, .button-ques2973 {
+    display: inline-block;
+    padding: 8px 15px;
+    background: linear-gradient(45deg, #7c4dff, #ba68c8);
+    color: #ffffff !important;
+    border: none;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none !important;
+    margin: 2px;
+}
+
+    .q-type238:hover, .q-type23:hover {
+        background: linear-gradient(45deg, #9c27b0, #d81b60);
+        transform: translateY(-1px);
+        color: #ffffff !important;
+        text-decoration: none !important;
+    }
+
+/* Специальный стиль для кнопки с красным фоном */
+.q-type235 {
+    background: linear-gradient(45deg, #f44336, #e91e63) !important;
+}
+
+    .q-type235:hover {
+        background: linear-gradient(45deg, #d32f2f, #c2185b) !important;
+    }

@@ -161,6 +161,17 @@
             padding-left: 0;
             padding-right: 0;
         }
+
+        .return-info {
+            background: rgba(76, 175, 80, 0.1);
+            border: 1px solid #4caf50;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 20px;
+            color: #4caf50;
+            text-align: center;
+            font-weight: 500;
+        }
     </style>
 }
 
@@ -168,9 +179,18 @@
     <div class="register-form-container">
         <h2>@ViewBag.Title</h2>
 
+        @if (!string.IsNullOrEmpty(ViewBag.ReturnUrl as string))
+        {
+            <div class="return-info">
+                <i class="fa fa-info-circle"></i>
+                Pentru a continua, te rugăm să îți creezi un cont.
+            </div>
+        }
+
         @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
         {
             @Html.AntiForgeryToken()
+            @Html.Hidden("returnUrl", ViewBag.ReturnUrl as string)
             <h4>Devină o parte a comunității.</h4>
             <hr />
             @Html.ValidationSummary(true, "", new { @class = "text-danger validation-summary-errors" })
@@ -215,7 +235,14 @@
         }
 
         <div class="register-link">
-            @Html.ActionLink("Deja ai cont? Loghează-te", "Login")
+            @if (!string.IsNullOrEmpty(ViewBag.ReturnUrl as string))
+            {
+                @Html.ActionLink("Deja ai cont? Loghează-te", "Login", new { returnUrl = ViewBag.ReturnUrl })
+            }
+            else
+            {
+                @Html.ActionLink("Deja ai cont? Loghează-te", "Login")
+            }
         </div>
     </div>
 </div>

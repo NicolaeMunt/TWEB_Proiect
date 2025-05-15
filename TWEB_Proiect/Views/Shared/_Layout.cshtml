@@ -11,9 +11,10 @@
 
     @* -------------  per-view extra <head> stuff ------------- *@
     @RenderSection("Head", required: false)
+    @RenderSection("Styles", required: false)
 </head>
 <body>
-    @* Navbar теперь только в _NavBar.cshtml *@
+    @* Navbar *@
     @Html.Partial("_NavBar")
 
     <main role="main" class="container">
@@ -22,11 +23,13 @@
 
     @if (ViewBag.HideFooter == null || ViewBag.HideFooter == false)
     {
-        @Html.Partial("_Footer")
+        Html.RenderPartial("_Footer");
     }
 
     @* -------------  JS  bundles (order matters!) ------------- *@
-    @Scripts.Render("~/bundles/bootstrap", "~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/jqueryval")
 
     @* -------------  per-view extra scripts ------------- *@
     @RenderSection("Scripts", required: false)

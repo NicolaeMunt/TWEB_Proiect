@@ -4,13 +4,196 @@
     ViewBag.Title = "Home Page";
 }
 
+@section Styles {
+    <style>
+        /* Стили для табов */
+        #main {
+            width: 100%;
+            position: relative;
+        }
+
+            #main input[type="radio"] {
+                display: none;
+            }
+
+            #main label {
+                display: inline-block;
+                padding: 12px 20px;
+                background: #f8f9fa;
+                border: 2px solid #e9ecef;
+                margin-right: 5px;
+                cursor: pointer;
+                border-radius: 8px 8px 0 0;
+                font-weight: 600;
+                color: #6c757d;
+                transition: all 0.3s ease;
+                position: relative;
+                z-index: 2;
+            }
+
+                #main label:hover {
+                    background: #e9ecef;
+                    color: #495057;
+                    transform: translateY(-2px);
+                }
+
+            #main input[type="radio"]:checked + label {
+                background: #7c4dff;
+                color: white;
+                border-color: #7c4dff;
+                transform: translateY(-2px);
+                box-shadow: 0 4px 12px rgba(124, 77, 255, 0.3);
+            }
+
+            #main section {
+                display: none;
+                padding: 30px 0;
+                border-top: 3px solid #7c4dff;
+                background: #ffffff;
+                position: relative;
+                z-index: 1;
+                border-radius: 0 8px 8px 8px;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            }
+
+            #main #tab1:checked ~ #content1,
+            #main #tab2:checked ~ #content2,
+            #main #tab3:checked ~ #content3,
+            #main #tab4:checked ~ #content4,
+            #main #tab5:checked ~ #content5 {
+                display: block;
+                animation: fadeIn 0.3s ease-in-out;
+            }
+
+        @@keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            background: #f8f9fa;
+            border-radius: 15px;
+            margin: 20px 0;
+        }
+
+            .empty-state h4 {
+                color: #6c757d;
+                margin-bottom: 15px;
+                font-size: 20px;
+            }
+
+            .empty-state p {
+                color: #868e96;
+                margin-bottom: 25px;
+            }
+
+            .empty-state .btn {
+                background: linear-gradient(45deg, #7c4dff, #ba68c8);
+                color: white;
+                padding: 12px 30px;
+                border-radius: 25px;
+                text-decoration: none;
+                font-weight: 600;
+                transition: all 0.3s ease;
+                display: inline-block;
+            }
+
+                .empty-state .btn:hover {
+                    background: linear-gradient(45deg, #9c27b0, #d81b60);
+                    transform: translateY(-2px);
+                    box-shadow: 0 8px 25px rgba(124, 77, 255, 0.4);
+                    color: white;
+                    text-decoration: none;
+                }
+
+        /* Стили для кнопок-ссылок */
+        .aboutus022, .join92 {
+            display: inline-block;
+            padding: 10px 20px;
+            background: linear-gradient(45deg, #7c4dff, #ba68c8);
+            color: #ffffff !important;
+            border: none;
+            border-radius: 25px;
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none !important;
+            text-align: center;
+            margin: 5px;
+        }
+
+            .aboutus022:hover, .join92:hover {
+                background: linear-gradient(45deg, #9c27b0, #d81b60);
+                transform: translateY(-2px);
+                box-shadow: 0 8px 25px rgba(124, 77, 255, 0.4);
+                color: #ffffff !important;
+                text-decoration: none !important;
+            }
+
+        /* Исправляем стили для кнопок в карточках вопросов */
+        .q-type238, .q-type23, .button-ques2973 {
+            display: inline-block;
+            padding: 8px 15px;
+            background: linear-gradient(45deg, #7c4dff, #ba68c8);
+            color: #ffffff !important;
+            border: none;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none !important;
+            margin: 2px;
+        }
+
+            .q-type238:hover, .q-type23:hover {
+                background: linear-gradient(45deg, #9c27b0, #d81b60);
+                transform: translateY(-1px);
+                color: #ffffff !important;
+                text-decoration: none !important;
+            }
+
+        @@media (max-width: 768px) {
+            #main label {
+                display: block;
+                margin-bottom: 5px;
+                margin-right: 0;
+                border-radius: 8px;
+                text-align: center;
+                padding: 10px 15px;
+                font-size: 14px;
+            }
+
+            #main section {
+                padding: 20px 10px;
+                border-radius: 8px;
+            }
+
+            .empty-state {
+                padding: 40px 15px;
+            }
+        }
+    </style>
+}
+
 @if (TempData["SuccessMessage"] != null)
 {
     <div class="alert alert-success">
         @TempData["SuccessMessage"]
     </div>
 }
-
 
 <body>
     <!--======= welcome section on top background=====-->
@@ -20,19 +203,29 @@
                 <h2>Salutare către INJÎNER.MD, aici puteți crea convorbi cu toți colegii studenți ce doresc să devina Ingineri</h2>
                 <p><br></p>
                 <div class="button0239-item">
-                    <a href="#">
-                        <button type="button" class="aboutus022">Despre Noi</button>
-                    </a>
-                    <a href="@Url.Action("Ask", "Question")">
-                        <button type="button" class="join92">Alăturați-vă</button>
-                    </a>
+                    <a href="#" class="aboutus022">Despre Noi</a>
+                    @if (Session["UserId"] != null)
+                    {
+                        <a href="@Url.Action("Ask", "Question")" class="join92">Pune o întrebare</a>
+                    }
+                    else
+                    {
+                        <a href="@Url.Action("Login", "Account")" class="join92">Conectează-te</a>
+                    }
                 </div>
                 <div class="form-style8292">
                     <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-pencil-square" aria-hidden="true"></i></span>
                         <input type="text" class="form-control form-control8392" placeholder="Dă orice întrebare și fii sigur că vei primi răspuns">
                         <span class="input-group-addon">
-                            <a href="@Url.Action("Ask", "Question")">Întreabă</a>
+                            @if (Session["UserId"] != null)
+                            {
+                                <a href="@Url.Action("Ask", "Question")">Întreabă</a>
+                            }
+                            else
+                            {
+                                <a href="@Url.Action("Login", "Account")">Conectează-te</a>
+                            }
                         </span>
                     </div>
                 </div>
@@ -102,15 +295,11 @@
                                             </div>
                                             <div class="col-md-2">
                                                 <div class="ques-type302">
-                                                    <a href="@Url.Action("Details", "Question", new { id = question.Id })">
-                                                        <button type="button" class="q-type238">
-                                                            <i class="fa fa-comment" aria-hidden="true"> @question.Answers răspuns</i>
-                                                        </button>
+                                                    <a href="@Url.Action("Details", "Question", new { id = question.Id })" class="q-type238">
+                                                        <i class="fa fa-comment" aria-hidden="true"></i> @question.Answers răspuns
                                                     </a>
-                                                    <a href="@Url.Action("Details", "Question", new { id = question.Id })">
-                                                        <button type="button" class="q-type23 button-ques2973">
-                                                            <i class="fa fa-user-circle-o" aria-hidden="true"> @question.Views vizualizări</i>
-                                                        </button>
+                                                    <a href="@Url.Action("Details", "Question", new { id = question.Id })" class="q-type23 button-ques2973">
+                                                        <i class="fa fa-user-circle-o" aria-hidden="true"></i> @question.Views vizualizări
                                                     </a>
                                                 </div>
                                             </div>
@@ -124,9 +313,25 @@
                                     <i class="fa fa-question-circle" style="font-size: 48px; color: #7c4dff; margin-bottom: 20px;"></i>
                                     <h4>Nu există întrebări recente</h4>
                                     <p>Fii primul care pune o întrebare!</p>
-                                    <a href="@Url.Action("Ask", "Question")" class="btn">
-                                        <i class="fa fa-plus"></i> Pune prima întrebare
-                                    </a>
+                                    @if (Session["UserId"] != null)
+                                    {
+                                        <a href="@Url.Action("Ask", "Question")" class="btn">
+                                            <i class="fa fa-plus"></i> Pune prima întrebare
+                                        </a>
+                                    }
+                                    else
+                                    {
+                                        <p style="color: #666; margin-top: 15px;">
+                                            <i class="fa fa-info-circle"></i>
+                                            Pentru a pune întrebări, trebuie să te conectezi.
+                                        </p>
+                                        <a href="@Url.Action("Login", "Account")" class="btn">
+                                            <i class="fa fa-sign-in"></i> Conectează-te
+                                        </a>
+                                        <a href="@Url.Action("Register", "Account")" class="btn" style="background: linear-gradient(45deg, #4caf50, #66bb6a); margin-left: 10px;">
+                                            <i class="fa fa-user-plus"></i> Înregistrează-te
+                                        </a>
+                                    }
                                 </div>
                             }
                         </section>
@@ -176,15 +381,11 @@
                                             </div>
                                             <div class="col-md-2">
                                                 <div class="ques-type302">
-                                                    <a href="@Url.Action("Details", "Question", new { id = question.Id })">
-                                                        <button type="button" class="q-type238">
-                                                            <i class="fa fa-comment" aria-hidden="true"> @question.Answers răspuns</i>
-                                                        </button>
+                                                    <a href="@Url.Action("Details", "Question", new { id = question.Id })" class="q-type238">
+                                                        <i class="fa fa-comment" aria-hidden="true"></i> @question.Answers răspuns
                                                     </a>
-                                                    <a href="@Url.Action("Details", "Question", new { id = question.Id })">
-                                                        <button type="button" class="q-type23 button-ques2973">
-                                                            <i class="fa fa-user-circle-o" aria-hidden="true"> @question.Views vizualizări</i>
-                                                        </button>
+                                                    <a href="@Url.Action("Details", "Question", new { id = question.Id })" class="q-type23 button-ques2973">
+                                                        <i class="fa fa-user-circle-o" aria-hidden="true"></i> @question.Views vizualizări
                                                     </a>
                                                 </div>
                                             </div>
@@ -244,15 +445,11 @@
                                             </div>
                                             <div class="col-md-2">
                                                 <div class="ques-type302">
-                                                    <a href="@Url.Action("Details", "Question", new { id = question.Id })">
-                                                        <button type="button" class="q-type238">
-                                                            <i class="fa fa-comment" aria-hidden="true"> @question.Answers răspuns</i>
-                                                        </button>
+                                                    <a href="@Url.Action("Details", "Question", new { id = question.Id })" class="q-type238">
+                                                        <i class="fa fa-comment" aria-hidden="true"></i> @question.Answers răspuns
                                                     </a>
-                                                    <a href="@Url.Action("Details", "Question", new { id = question.Id })">
-                                                        <button type="button" class="q-type23 button-ques2973">
-                                                            <i class="fa fa-user-circle-o" aria-hidden="true"> @question.Views vizualizări</i>
-                                                        </button>
+                                                    <a href="@Url.Action("Details", "Question", new { id = question.Id })" class="q-type23 button-ques2973">
+                                                        <i class="fa fa-user-circle-o" aria-hidden="true"></i> @question.Views vizualizări
                                                     </a>
                                                 </div>
                                             </div>
@@ -262,11 +459,13 @@
                             }
                             else
                             {
-                                <div class="question-type2033">
-                                    <div class="text-center" style="padding: 40px;">
-                                        <h4>Nu există întrebări recent răspunse</h4>
-                                        <p>Răspunzurile vor apărea aici!</p>
-                                    </div>
+                                <div class="empty-state">
+                                    <i class="fa fa-check-circle" style="font-size: 48px; color: #4caf50; margin-bottom: 20px;"></i>
+                                    <h4>Nu există întrebări recent răspunse</h4>
+                                    <p>Răspunsurile vor apărea aici când vor fi marcate ca rezolvate!</p>
+                                    <a href="@Url.Action("List", "Question")" class="btn">
+                                        <i class="fa fa-list"></i> Vezi întrebările
+                                    </a>
                                 </div>
                             }
                         </section>
@@ -308,15 +507,11 @@
                                             </div>
                                             <div class="col-md-2">
                                                 <div class="ques-type302">
-                                                    <a href="@Url.Action("Details", "Question", new { id = question.Id })">
-                                                        <button type="button" class="q-type238">
-                                                            <i class="fa fa-comment" aria-hidden="true"> Răspunde</i>
-                                                        </button>
+                                                    <a href="@Url.Action("Details", "Question", new { id = question.Id })" class="q-type238">
+                                                        <i class="fa fa-comment" aria-hidden="true"></i> Răspunde
                                                     </a>
-                                                    <a href="@Url.Action("Details", "Question", new { id = question.Id })">
-                                                        <button type="button" class="q-type23 button-ques2973">
-                                                            <i class="fa fa-user-circle-o" aria-hidden="true"> @question.Views vizualizări</i>
-                                                        </button>
+                                                    <a href="@Url.Action("Details", "Question", new { id = question.Id })" class="q-type23 button-ques2973">
+                                                        <i class="fa fa-user-circle-o" aria-hidden="true"></i> @question.Views vizualizări
                                                     </a>
                                                 </div>
                                             </div>
@@ -330,9 +525,22 @@
                                     <i class="fa fa-exclamation-circle" style="font-size: 48px; color: #ff9800; margin-bottom: 20px;"></i>
                                     <h4>Toate întrebările au răspuns!</h4>
                                     <p>Excelent! Comunitatea este foarte activă!</p>
-                                    <a href="@Url.Action("Ask", "Question")" class="btn">
-                                        <i class="fa fa-plus"></i> Pune o întrebare nouă
-                                    </a>
+                                    @if (Session["UserId"] != null)
+                                    {
+                                        <a href="@Url.Action("Ask", "Question")" class="btn">
+                                            <i class="fa fa-plus"></i> Pune o întrebare nouă
+                                        </a>
+                                    }
+                                    else
+                                    {
+                                        <p style="color: #666; margin-top: 15px;">
+                                            <i class="fa fa-info-circle"></i>
+                                            Conectează-te pentru a pune întrebări.
+                                        </p>
+                                        <a href="@Url.Action("Login", "Account")" class="btn">
+                                            <i class="fa fa-sign-in"></i> Conectează-te
+                                        </a>
+                                    }
                                 </div>
                             }
                         </section>
@@ -382,15 +590,11 @@
                                             </div>
                                             <div class="col-md-2">
                                                 <div class="ques-type302">
-                                                    <a href="@Url.Action("Details", "Question", new { id = question.Id })">
-                                                        <button type="button" class="q-type238">
-                                                            <i class="fa fa-comment" aria-hidden="true"> @question.Answers răspuns</i>
-                                                        </button>
+                                                    <a href="@Url.Action("Details", "Question", new { id = question.Id })" class="q-type238">
+                                                        <i class="fa fa-comment" aria-hidden="true"></i> @question.Answers răspuns
                                                     </a>
-                                                    <a href="@Url.Action("Details", "Question", new { id = question.Id })">
-                                                        <button type="button" class="q-type23 button-ques2973">
-                                                            <i class="fa fa-user-circle-o" aria-hidden="true"> @question.Views vizualizări</i>
-                                                        </button>
+                                                    <a href="@Url.Action("Details", "Question", new { id = question.Id })" class="q-type23 button-ques2973">
+                                                        <i class="fa fa-user-circle-o" aria-hidden="true"></i> @question.Views vizualizări
                                                     </a>
                                                 </div>
                                             </div>
@@ -404,9 +608,25 @@
                                     <i class="fa fa-newspaper-o" style="font-size: 48px; color: #7c4dff; margin-bottom: 20px;"></i>
                                     <h4>Nu există posturi recente</h4>
                                     <p>Fii primul care pune o întrebare!</p>
-                                    <a href="@Url.Action("Ask", "Question")" class="btn">
-                                        <i class="fa fa-plus"></i> Pune prima întrebare
-                                    </a>
+                                    @if (Session["UserId"] != null)
+                                    {
+                                        <a href="@Url.Action("Ask", "Question")" class="btn">
+                                            <i class="fa fa-plus"></i> Pune prima întrebare
+                                        </a>
+                                    }
+                                    else
+                                    {
+                                        <p style="color: #666; margin-top: 15px;">
+                                            <i class="fa fa-info-circle"></i>
+                                            Pentru a pune întrebări, trebuie să te conectezi.
+                                        </p>
+                                        <a href="@Url.Action("Login", "Account")" class="btn">
+                                            <i class="fa fa-sign-in"></i> Conectează-te
+                                        </a>
+                                        <a href="@Url.Action("Register", "Account")" class="btn" style="background: linear-gradient(45deg, #4caf50, #66bb6a); margin-left: 10px;">
+                                            <i class="fa fa-user-plus"></i> Înregistrează-te
+                                        </a>
+                                    }
                                 </div>
                             }
                         </section>
@@ -479,27 +699,21 @@
                         </li>
                     </div>
 
-                    <!--login part-->
-                    <div class="login-part2389">
-                        <h4>Login</h4>
-                        <div class="input-group300">
-                            <span><i class="fa fa-user" aria-hidden="true"></i></span>
-                            <input type="text" class="namein309" placeholder="Username">
+                    <!--login part - убираем дублированную форму входа-->
+                    @if (Session["UserId"] == null)
+                    {
+                        <div class="login-part2389">
+                            <h4>Быстрый доступ</h4>
+                            <div style="text-align: center; padding: 20px;">
+                                <a href="@Url.Action("Login", "Account")" class="btn" style="width: 100%; margin-bottom: 10px; background: linear-gradient(45deg, #7c4dff, #ba68c8);">
+                                    <i class="fa fa-sign-in"></i> Войти
+                                </a>
+                                <a href="@Url.Action("Register", "Account")" class="btn" style="width: 100%; background: linear-gradient(45deg, #4caf50, #66bb6a);">
+                                    <i class="fa fa-user-plus"></i> Регистрация
+                                </a>
+                            </div>
                         </div>
-                        <div class="input-group300">
-                            <span><i class="fa fa-lock" aria-hidden="true"></i></span>
-                            <input type="password" class="passin309" placeholder="Password">
-                        </div>
-                        <a href="#">
-                            <button type="button" class="userlogin320">Log In</button>
-                        </a>
-                        <div class="rememberme">
-                            <label>
-                                <input type="checkbox" checked="checked"> Remember Me
-                            </label>
-                            <a href="#" class="resbutton3892">Register</a>
-                        </div>
-                    </div>
+                    }
 
                     <!--highest part-->
                     <div class="highest-part302">
