@@ -154,7 +154,9 @@
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="App_Start\UnityMvcActivator.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="FIlters\AdminAuthorizationFilter.cs" />
     <Compile Include="FIlters\AuthenticationFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -234,6 +236,7 @@
     <Content Include="Views\Home\SignUp.cshtml" />
     <Content Include="Views\Home\ConnectionTest.cshtml" />
     <Content Include="Views\Home\UserList.cshtml" />
+    <Content Include="Views\Admin\Dashborard.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

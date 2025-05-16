@@ -52,6 +52,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data\ApplicationDbContext.cs" />
+    <Compile Include="Migrations\202505160948288_InitialCreate.cs" />
+    <Compile Include="Migrations\202505160948288_InitialCreate.Designer.cs">
+      <DependentUpon>202505160948288_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="Services\UserService.cs" />
@@ -69,6 +74,11 @@
       <Project>{7ba1e047-c2dc-4aec-b67b-49c0824630df}</Project>
       <Name>Helpers</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202505160948288_InitialCreate.resx">
+      <DependentUpon>202505160948288_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

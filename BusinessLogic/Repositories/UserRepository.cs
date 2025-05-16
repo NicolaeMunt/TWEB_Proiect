@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using BusinessLogic.Data;
 using Domain.Entities.User;
@@ -125,6 +126,55 @@ namespace BusinessLogic.Repositories
             var session = _context.LoginResponses
                 .FirstOrDefault(s => s.Token == token && s.IsActive && s.ExpiryDate > DateTime.UtcNow);
             return session != null;
+        }
+
+        public IEnumerable<User> GetAllUsers()
+        {
+            return _context.Users.ToList();
+        }
+
+        public bool PromoteToAdmin(int userId)
+        {
+            var user = _context.Users.Find(userId);
+            if (user == null)
+                return false;
+
+            user.IsAdmin = true;
+            _context.SaveChanges();
+            return true;
+        }
+
+        public bool DemoteFromAdmin(int userId)
+        {
+            var user = _context.Users.Find(userId);
+            if (user == null)
+                return false;
+
+            user.IsAdmin = false;
+            _context.SaveChanges();
+            return true;
+        }
+
+        public bool DeleteUser(int userId)
+        {
+            var user = _context.Users.Find(userId);
+            if (user == null)
+                return false;
+
+            _context.Users.Remove(user);
+            _context.SaveChanges();
+            return true;
+        }
+
+        public User GetUserByToken(string token)
+        {
+            var loginResp = _context.LoginResponses
+                .FirstOrDefault(l => l.Token == token && l.IsActive && l.ExpiryDate > DateTime.UtcNow);
+
+            if (loginResp == null)
+                return null;
+
+            return _context.Users.Find(loginResp.UserId);
         }
     }
 }

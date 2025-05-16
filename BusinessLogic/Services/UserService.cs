@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Domain.Entities.User;
 using Domain.Interfaces;
 using Helpers.Security;
@@ -88,6 +89,50 @@ namespace BusinessLogic.Services
         public void UpdateUser(User user)
         {
             _userRepository.UpdateUser(user);
+        }
+        public IEnumerable<User> GetAllUsers()
+        {
+            return _userRepository.GetAllUsers();
+        }
+
+        public bool PromoteToAdmin(int userId)
+        {
+            return _userRepository.PromoteToAdmin(userId);
+        }
+
+        public bool DemoteFromAdmin(int userId)
+        {
+            return _userRepository.DemoteFromAdmin(userId);
+        }
+
+        public bool DeleteUser(int userId)
+        {
+            return _userRepository.DeleteUser(userId);
+        }
+
+        public bool IsUserAdmin(int userId)
+        {
+            var user = _userRepository.GetById(userId);
+            return user != null && user.IsAdmin;
+        }
+
+        public bool IsUserAdmin(string token)
+        {
+            // We need to get the userId associated with this token
+            // But we can't access _context directly from the service
+
+            // First check if token is valid
+            bool isValidToken = _userRepository.ValidateLoginSession(token);
+            if (!isValidToken)
+                return false;
+
+            // We need to add a method to get user by token to the repository
+            // Add this to IUserRepository and implement it:
+            // User GetUserByToken(string token);
+
+            // Then use it:
+            var user = _userRepository.GetUserByToken(token);
+            return user != null && user.IsAdmin;
         }
     }
 }
