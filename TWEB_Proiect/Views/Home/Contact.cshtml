@@ -1,422 +1,712 @@
-﻿
-@{
-    ViewBag.Title = "Contact";
+﻿@{
+     ViewBag.Title = "Despre noi";
 }
 
-<
-
 <body>
-       <section class="header-descriptin329">
-        <div class="container">
-            <h3>Ask Question</h3>
-            <ol class="breadcrumb breadcrumb839">
-                <li>
-                    <a href="@Url.Action("Index", "Home")">Home</a>
-                </li>
-                <li class="active">Contact US</li>
-            </ol>
-        </div>
-        <section class="google-map390">
-            <div class="container">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d9109.112492097105!2d28.875522629835483!3d47.05948912980148!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40c97ce00125f907%3A0xfc2e5ee00a6d3d6a!2sUniversitatea%20Tehnic%C4%83%20a%20Moldovei!5e0!3m2!1sro!2s!4v1739805625783!5m2!1sro!2s"
-                        width="100%"
-                        height="400"
-                        style="border:0;"
-                        allowfullscreen=""
-                        loading="lazy"
-                        referrerpolicy="no-referrer-when-downgrade">
-                </iframe>
-            </div>
-        </section>
+     <!-- Header Section -->
+     <section class="header-descriptin329">
+          <div class="container">
+               <h3>Despre noi</h3>
+               <ol class="breadcrumb breadcrumb839">
+                    <li>
+                         <a href="@Url.Action("Index", "Home")">Home</a>
+                    </li>
+                    <li class="active">Despre noi</li>
+               </ol>
+          </div>
+     </section>
 
-        <section class="main-content920">
-            <div class="container">
-                <div class="row">
+     <!-- Hero Section with Map -->
+     <section class="google-map390">
+          <div class="container">
+               <div class="map-container-modern">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d9109.112492097105!2d28.875522629835483!3d47.05948912980148!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40c97ce00125f907%3A0xfc2e5ee00a6d3d6a!2sUniversitatea%20Tehnic%C4%83%20a%20Moldovei!5e0!3m2!1sro!2s!4v1739805625783!5m2!1sro!2s"
+                            width="100%"
+                            height="400"
+                            style="border:0; border-radius:15px; box-shadow: 0 8px 25px rgba(0,0,0,0.15);"
+                            allowfullscreen=""
+                            loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+               </div>
+          </div>
+     </section>
+
+     <!-- Main Content -->
+     <section class="main-content920">
+          <div class="container">
+               <div class="row">
                     <div class="col-md-9">
-                        <div class="ask-question-input-part032">
-                            <h4>Contact Us</h4>
-                            <hr>
-                            <form>
-                                <div class="username-part940">
-                                    <span class="form-description43">User name* </span><input type="text" name="fname" class="username029" placeholder="Enter your Name">
-                                </div>
-                                <div class="email-part320">
-                                    <span class="form-description442">E-Mail* </span><input type="text" name="fname" class="email30" placeholder="Enter Your Email">
-                                </div>
-                                <div class="question-title39">
-                                    <span class="form-description433">Question-Title* </span><input type="text" name="fname" class="question-ttile32" placeholder="Write Your Question Title">
-                                </div>
-                                <div class="question-title39">
-                                    <span class="form-description43313">Details* </span>
-<textarea class="question-details3112" placeholder="Type the description thoroughly and in detail .">
+                         <!-- About Platform Section -->
+                         <div class="ask-question-input-part032 about-platform-section">
+                              <div class="section-header">
+                                   <i class="fa fa-rocket section-icon"></i>
+                                   <h4>Despre INJINER.MD</h4>
+                              </div>
+                              <hr class="modern-divider">
+                              <div class="about-content">
+                                   <div class="highlight-card">
+                                        <div class="highlight-icon">
+                                             <i class="fa fa-graduation-cap"></i>
+                                        </div>
+                                        <div class="highlight-content">
+                                             <h5>Platformă educațională</h5>
+                                             <p>INJINER.MD este o platformă educațională dedicată studenților și absolvenților Universității Tehnice a Moldovei.</p>
+                                        </div>
+                                   </div>
 
-                            
-                        </textarea>
+                                   <div class="highlight-card">
+                                        <div class="highlight-icon">
+                                             <i class="fa fa-users"></i>
+                                        </div>
+                                        <div class="highlight-content">
+                                             <h5>Comunitate activă</h5>
+                                             <p>Scopul nostru este să creăm o comunitate solidă unde viitorii ingineri pot schimba experiențe, pune întrebări și găsi răspunsuri la provocările tehnice.</p>
+                                        </div>
+                                   </div>
 
+                                   <div class="highlight-card">
+                                        <div class="highlight-icon">
+                                             <i class="fa fa-cogs"></i>
+                                        </div>
+                                        <div class="highlight-content">
+                                             <h5>Tehnologii moderne</h5>
+                                             <p>Platforma noastră oferă un spațiu interactiv pentru discuții despre tehnologii moderne, proiecte de inginerie și oportunități de carieră.</p>
+                                        </div>
+                                   </div>
 
-                                </div>
+                                   <div class="highlight-card">
+                                        <div class="highlight-icon">
+                                             <i class="fa fa-line-chart"></i>
+                                        </div>
+                                        <div class="highlight-content">
+                                             <h5>Dezvoltare profesională</h5>
+                                             <p>Cu ajutorul INJINER.MD, studenții pot să-și construiască rețele profesionale, să învețe unii de la alții și să se pregătească pentru piața muncii din domeniul ingineriei.</p>
+                                        </div>
+                                   </div>
+                              </div>
+                         </div>
 
+                         <!-- Development Team Section -->
+                         <div class="ask-question-input-part032 team-section">
+                              <div class="section-header">
+                                   <i class="fa fa-code section-icon"></i>
+                                   <h4>Echipa de dezvoltare</h4>
+                              </div>
+                              <hr class="modern-divider">
+                              <div class="team-content">
+                                   <div class="team-member-card">
+                                        <div class="member-avatar">
+                                             <img src="https://via.placeholder.com/80x80/7c4dff/ffffff?text=Dev" alt="Developer">
+                                             <div class="member-status online"></div>
+                                        </div>
+                                        <div class="member-info">
+                                             <h5>Numele Vostru</h5>
+                                             <p class="member-role">
+                                                  <i class="fa fa-code"></i>
+                                                  Full Stack Developer
+                                             </p>
+                                             <p class="member-description">Student la UTM, specializarea Informatică și Tehnologii Informaționale. Pasionat de dezvoltarea web și tehnologiile moderne. Creatorul și dezvoltatorul principal al platformei INJINER.MD.</p>
+                                             <div class="member-skills">
+                                                  <span class="skill-tag">ASP.NET</span>
+                                                  <span class="skill-tag">C#</span>
+                                                  <span class="skill-tag">JavaScript</span>
+                                                  <span class="skill-tag">SQL Server</span>
+                                             </div>
+                                        </div>
+                                   </div>
 
-                            </form>
-                            <div class="publish-button2389">
-                                <button type="button" class="publis1291">Publish your Question</button>
-                            </div>
+                                   <div class="team-member-card">
+                                        <div class="member-avatar">
+                                             <img src="https://via.placeholder.com/80x80/ba68c8/ffffff?text=UX" alt="Designer">
+                                             <div class="member-status online"></div>
+                                        </div>
+                                        <div class="member-info">
+                                             <h5>[Nume al doilea dezvoltator]</h5>
+                                             <p class="member-role">
+                                                  <i class="fa fa-paint-brush"></i>
+                                                  UI/UX Designer
+                                             </p>
+                                             <p class="member-description">Responsabil pentru designul interfaței utilizator și experiența de utilizare a platformei. Specializat în crearea de interfețe moderne și intuitive.</p>
+                                             <div class="member-skills">
+                                                  <span class="skill-tag">Figma</span>
+                                                  <span class="skill-tag">Adobe XD</span>
+                                                  <span class="skill-tag">CSS3</span>
+                                                  <span class="skill-tag">Bootstrap</span>
+                                             </div>
+                                        </div>
+                                   </div>
+                              </div>
+                         </div>
 
-                        </div>
+                         <!-- Statistics Section -->
+                         <div class="ask-question-input-part032 stats-section">
+                              <div class="section-header">
+                                   <i class="fa fa-bar-chart section-icon"></i>
+                                   <h4>Statistici platformă</h4>
+                              </div>
+                              <hr class="modern-divider">
+                              <div class="stats-grid">
+                                   <div class="stat-card">
+                                        <div class="stat-icon">
+                                             <i class="fa fa-users"></i>
+                                        </div>
+                                        <div class="stat-content">
+                                             <h3>150+</h3>
+                                             <p>Utilizatori activi</p>
+                                        </div>
+                                   </div>
+                                   <div class="stat-card">
+                                        <div class="stat-icon">
+                                             <i class="fa fa-question-circle"></i>
+                                        </div>
+                                        <div class="stat-content">
+                                             <h3>500+</h3>
+                                             <p>Întrebări postate</p>
+                                        </div>
+                                   </div>
+                                   <div class="stat-card">
+                                        <div class="stat-icon">
+                                             <i class="fa fa-comments"></i>
+                                        </div>
+                                        <div class="stat-content">
+                                             <h3>1200+</h3>
+                                             <p>Răspunsuri oferite</p>
+                                        </div>
+                                   </div>
+                                   <div class="stat-card">
+                                        <div class="stat-icon">
+                                             <i class="fa fa-star"></i>
+                                        </div>
+                                        <div class="stat-content">
+                                             <h3>95%</h3>
+                                             <p>Satisfacție utilizatori</p>
+                                        </div>
+                                   </div>
+                              </div>
+                         </div>
 
+                         <!-- Contact Information Section -->
+                         <div class="ask-question-input-part032 contact-section">
+                              <div class="section-header">
+                                   <i class="fa fa-envelope section-icon"></i>
+                                   <h4>Informații de contact</h4>
+                              </div>
+                              <hr class="modern-divider">
+                              <div class="contact-grid">
+                                   <div class="contact-item">
+                                        <div class="contact-icon">
+                                             <i class="fa fa-map-marker"></i>
+                                        </div>
+                                        <div class="contact-info">
+                                             <h6>Adresa</h6>
+                                             <p>Universitatea Tehnică a Moldovei<br>Chișinău, Moldova</p>
+                                        </div>
+                                   </div>
+                                   <div class="contact-item">
+                                        <div class="contact-icon">
+                                             <i class="fa fa-envelope-o"></i>
+                                        </div>
+                                        <div class="contact-info">
+                                             <h6>Email</h6>
+                                             <p><a href="mailto:contact@injiner.md">contact@injiner.md</a></p>
+                                        </div>
+                                   </div>
+                                   <div class="contact-item">
+                                        <div class="contact-icon">
+                                             <i class="fa fa-phone"></i>
+                                        </div>
+                                        <div class="contact-info">
+                                             <h6>Telefon</h6>
+                                             <p>+373 XX XXX XXX</p>
+                                        </div>
+                                   </div>
+                                   <div class="contact-item">
+                                        <div class="contact-icon">
+                                             <i class="fa fa-globe"></i>
+                                        </div>
+                                        <div class="contact-info">
+                                             <h6>Website</h6>
+                                             <p><a href="https://www.injiner.md" target="_blank">www.injiner.md</a></p>
+                                        </div>
+                                   </div>
+                              </div>
+                         </div>
 
+                         <!-- Mission & Vision Section -->
+                         <div class="ask-question-input-part032 mission-section">
+                              <div class="row">
+                                   <div class="col-md-6">
+                                        <div class="mission-card">
+                                             <div class="mission-header">
+                                                  <i class="fa fa-bullseye"></i>
+                                                  <h5>Misiunea noastră</h5>
+                                             </div>
+                                             <p>Să oferim o platformă accesibilă și eficientă pentru studenții și profesioniștii din domeniul ingineriei din Moldova, facilitând schimbul de cunoștințe și dezvoltarea competențelor tehnice.</p>
+                                        </div>
+                                   </div>
+                                   <div class="col-md-6">
+                                        <div class="vision-card">
+                                             <div class="vision-header">
+                                                  <i class="fa fa-eye"></i>
+                                                  <h5>Viziunea noastră</h5>
+                                             </div>
+                                             <p>Să devenim cea mai mare și influentă comunitate online pentru inginerii din Moldova, contribuind la dezvoltarea domeniului tehnic și la pregătirea unei noi generații de specialiști.</p>
+                                        </div>
+                                   </div>
+                              </div>
+                         </div>
                     </div>
-                    <!--                end of col-md-9 -->
-                    <!--           strart col-md-3 (side bar)-->
+
+                    <!-- Sidebar -->
                     <aside class="col-md-3 sidebar97239">
-                        <div class="status-part3821">
-                            <h4>stats</h4>
+                         <div class="status-part3821">
+                              <h4>Statistici</h4>
+                              <div class="stats-sidebar">
+                                   <a href="#"><i class="fa fa-question-circle" aria-hidden="true"></i> Întrebări (500)</a>
+                                   <a href="#"><i class="fa fa-comment" aria-hidden="true"></i> Răspunsuri (1200)</a>
+                                   <a href="#"><i class="fa fa-users" aria-hidden="true"></i> Utilizatori (150)</a>
+                              </div>
+                         </div>
 
-                            <a href="#"><i class="fa fa-question-circle" aria-hidden="true"> Întrebări(20)</i></a>
-                            <i class="fa fa-comment" aria-hidden="true"> Răspunsuri(50)</i>
-                        </div>
-                        <div class="categori-part329">
-                            <h4>Category</h4>
-                            <ul>
-                                <li><a href="#">web developer</a></li>
-                                <li><a href="#">Andriod developer</a></li>
-                                <li><a href="#">grapics developer</a></li>
-                                <li><a href="#">web developer</a></li>
+                         <div class="categori-part329">
+                              <h4>Categorii populare</h4>
+                              <ul>
+                                   <li><a href="#">Web Development</a></li>
+                                   <li><a href="#">Android Development</a></li>
+                                   <li><a href="#">Graphics Design</a></li>
+                                   <li><a href="#">Software Engineering</a></li>
+                                   <li><a href="#">Machine Learning</a></li>
+                                   <li><a href="#">Cybersecurity</a></li>
+                              </ul>
+                         </div>
 
-                            </ul>
-                        </div>
+                         <!-- Social Media -->
+                         <div class="social-part2189">
+                              <h4>Urmărește-ne</h4>
+                              <ul class="social-list">
+                                   <li class="facebook-two">
+                                        <a href="#" target="_blank">
+                                             <strong>
+                                                  <span>Urmărește</span>
+                                                  <i class="fa fa-facebook" aria-hidden="true"></i>
+                                                  <br>
+                                                  <small>Pe Facebook</small>
+                                             </strong>
+                                        </a>
+                                   </li>
+                                   <li class="twitter-three">
+                                        <a href="#" target="_blank">
+                                             <strong>
+                                                  <span>Urmărește</span>
+                                                  <i class="fa fa-twitter" aria-hidden="true"></i>
+                                                  <br>
+                                                  <small>Pe Twitter</small>
+                                             </strong>
+                                        </a>
+                                   </li>
+                                   <li class="youtube-four">
+                                        <a href="#" target="_blank">
+                                             <strong>
+                                                  <span>Abonează-te</span>
+                                                  <i class="fa fa-youtube" aria-hidden="true"></i>
+                                                  <br>
+                                                  <small>Pe YouTube</small>
+                                             </strong>
+                                        </a>
+                                   </li>
+                              </ul>
+                         </div>
 
-                        <!--             social part -->
-                        <div class="social-part2189">
-                            <h4>Find us</h4>
-                            <li class="rss-one">
-                                <a href="#" target="_blank">
-                                    <strong>
-                                        <span>Subscribe</span>
-                                        <i class="fa fa-rss" aria-hidden="true"></i>
+                         <!-- Login Form -->
+                         @if (Session["UserId"] == null)
+                         {
+                              <div class="login-part2389">
+                                   <h4>Autentificare</h4>
+                                   <div class="input-group300">
+                                        <span><i class="fa fa-user" aria-hidden="true"></i></span>
+                                        <input type="text" class="namein309" placeholder="Nume de utilizator">
+                                   </div>
+                                   <div class="input-group300">
+                                        <span><i class="fa fa-lock" aria-hidden="true"></i></span>
+                                        <input type="password" class="passin309" placeholder="Parolă">
+                                   </div>
+                                   <a href="@Url.Action("Login", "Account")"><button type="button" class="userlogin320">Autentificare</button></a>
+                                   <div class="rememberme">
+                                        <label><input type="checkbox" checked="checked"> Ține-mă minte</label>
+                                        <a href="@Url.Action("Register", "Account")" class="resbutton3892">Înregistrare</a>
+                                   </div>
+                              </div>
+                         }
 
-                                        <br>
-                                        <small>To RSS Feed</small>
-
-                                    </strong>
-                                </a>
-                            </li>
-                            <li class="facebook-two">
-                                <a href="#" target="_blank">
-                                    <strong>
-                                        <span>Subscribe</span>
-                                        <i class="fa fa-facebook" aria-hidden="true"></i>
-
-                                        <br>
-                                        <small>To Facebook Feed</small>
-
-                                    </strong>
-                                </a>
-                            </li>
-                            <li class="twitter-three">
-                                <a href="#" target="_blank">
-                                    <strong>
-                                        <span>Subscribe</span>
-                                        <i class="fa fa-twitter" aria-hidden="true"></i>
-
-                                        <br>
-                                        <small>To twitter Feed</small>
-
-                                    </strong>
-                                </a>
-                            </li>
-                            <li class="youtube-four">
-                                <a href="#" target="_blank">
-                                    <strong>
-                                        <span>Subscribe</span>
-                                        <i class="fa fa-youtube" aria-hidden="true"></i>
-
-                                        <br>
-                                        <small>To youtube Feed</small>
-
-                                    </strong>
-                                </a>
-                            </li>
-
-                        </div>
-
-                        <!--              login part-->
-                        <div class="login-part2389">
-                            <h4>Login</h4>
-                            <div class="input-group300">
-                                <span><i class="fa fa-user" aria-hidden="true"></i></span>
-                                <input type="text" class="namein309" placeholder="Username">
-                            </div>
-                            <div class="input-group300">
-                                <span><i class="fa fa-lock" aria-hidden="true"></i></span>
-                                <input type="password" class="passin309" placeholder="Name">
-                            </div>
-                            <a href="#"><button type="button" class="userlogin320">Log In</button></a>
-                            <div class="rememberme">
-                                <label><input type="checkbox" checked="checked"> Remember Me</label>
-                                <a href="#" class="resbutton3892">Register</a>
-                            </div>
-                        </div>
-                        <!--              highest part-->
-                        <div class="highest-part302">
-                            <h4>Highest Points</h4>
-                            <div class="pints-wrapper">
-                                <div class="left-user3898">
-                                    <a href="#"><img src="image/images.png" alt="Image"></a>
-                                    <div class="imag-overlay39">
-                                        <a href="#"><i class="fa fa-plus" aria-hidden="true"></i></a>
-                                    </div>
-                                </div>
-                                <span class="points-details938">
-                                    <a href="#"><h5>Ahmed Hasan</h5></a>
-                                    <a href="#" class="designetion439">Pundit</a>
-                                    <p>206 points</p>
-                                </span>
-
-                            </div>
-                            <hr>
-                            <div class="pints-wrapper">
-                                <div class="left-user3898">
-                                    <a href="#"><img src="image/images.png" alt="Image"></a>
-                                    <div class="imag-overlay39">
-                                        <a href="#"><i class="fa fa-plus" aria-hidden="true"></i></a>
-                                    </div>
-                                </div>
-                                <span class="points-details938">
-                                    <a href="#"><h5>Ahmed Hasan</h5></a>
-                                    <a href="#" class="designetion439">Pundit</a>
-                                    <p>206 points</p>
-                                </span>
-
-                            </div>
-                            <hr>
-                            <div class="pints-wrapper">
-                                <div class="left-user3898">
-                                    <a href="#"><img src="image/images.png" alt="Image"></a>
-                                    <div class="imag-overlay39">
-                                        <a href="#"><i class="fa fa-plus" aria-hidden="true"></i></a>
-                                    </div>
-                                </div>
-                                <span class="points-details938">
-                                    <a href="#"><h5>Ahmed Hasan</h5></a>
-                                    <a href="#" class="designetion439">Pundit</a>
-                                    <p>206 points</p>
-                                </span>
-
-                            </div>
-                            <hr>
-                            <div class="pints-wrapper">
-                                <div class="left-user3898">
-                                    <a href="#"><img src="image/images.png" alt="Image"></a>
-                                    <div class="imag-overlay39">
-                                        <a href="#"><i class="fa fa-plus" aria-hidden="true"></i></a>
-                                    </div>
-                                </div>
-                                <span class="points-details938">
-                                    <a href="#"><h5>Ahmed Hasan</h5></a>
-                                    <a href="#" class="designetion439">Pundit</a>
-                                    <p>206 points</p>
-                                </span>
-
-                            </div>
-                            <hr>
-                            <div class="pints-wrapper">
-                                <div class="left-user3898">
-                                    <a href="#"><img src="image/images.png" alt="Image"></a>
-                                    <div class="imag-overlay39">
-                                        <a href="#"><i class="fa fa-plus" aria-hidden="true"></i></a>
-                                    </div>
-                                </div>
-                                <span class="points-details938">
-                                    <a href="#"><h5>Ahmed Hasan</h5></a>
-                                    <a href="#" class="designetion439">Pundit</a>
-                                    <p>206 points</p>
-                                </span>
-
-                            </div>
-
-                        </div>
-                        <!--               end of Highest points -->
-                        <!--          start tags part-->
-                        <div class="tags-part2398">
-                            <h4>Tags</h4>
-                            <ul>
-                                <li><a href="#">analytics</a></li>
-                                <li><a href="#">Computer</a></li>
-                                <li><a href="#">Developer</a></li>
-                                <li><a href="#">Google</a></li>
-                                <li><a href="#">Interview</a></li>
-                                <li><a href="#">Programmer</a></li>
-                                <li><a href="#">Salary</a></li>
-                                <li><a href="#">University</a></li>
-                                <li><a href="#">Employee</a></li>
-
-                            </ul>
-
-
-                        </div>
-                        <!--          End tags part-->
-                        <!--        start recent post  -->
-                        <div class="recent-post3290">
-                            <h4>Recent Post</h4>
-                            <div class="post-details021">
-                                <a href="#"><h5>How much do web developers</h5></a>
-                                <p>I am thinking of pursuing web developing as a career & was ...</p>
-                                <small style="color: #848991">July 16, 2017</small>
-                            </div>
-                            <hr>
-                            <div class="post-details021">
-                                <a href="#"><h5>How much do web developers</h5></a>
-                                <p>I am thinking of pursuing web developing as a career & was ...</p>
-                                <small style="color: #848991">July 16, 2017</small>
-                            </div>
-                            <hr>
-                            <div class="post-details021">
-                                <a href="#"><h5>How much do web developers</h5></a>
-                                <p>I am thinking of pursuing web developing as a career & was ...</p>
-                                <small style="color: #848991">July 16, 2017</small>
-                            </div>
-
-
-                        </div>
-                        <!--       end recent post    -->
-
+                         <!-- Recent Posts -->
+                         <div class="recent-post3290">
+                              <h4>Postări recente</h4>
+                              <div class="post-details021">
+                                   <a href="#"><h5>Cum să devii un inginer de succes în 2025</h5></a>
+                                   <p>Sfaturi practice pentru studenții care vor să-și construiască o carieră de succes...</p>
+                                   <small style="color: #848991">29 Mai, 2025</small>
+                              </div>
+                              <hr>
+                              <div class="post-details021">
+                                   <a href="#"><h5>Tendințele în tehnologie pentru 2025</h5></a>
+                                   <p>Ce tehnologii vor domina piața în următorii ani și cum să te pregătești...</p>
+                                   <small style="color: #848991">25 Mai, 2025</small>
+                              </div>
+                              <hr>
+                              <div class="post-details021">
+                                   <a href="#"><h5>Interviu cu absolvent UTM</h5></a>
+                                   <p>Experiența unui absolvent care lucrează la Google...</p>
+                                   <small style="color: #848991">20 Mai, 2025</small>
+                              </div>
+                         </div>
                     </aside>
-                </div>
-            </div>
-        </section>
-
-        <!--    footer -->
-        <div class="footer-search">
-            <div class="container">
-                <div class="row">
-                    <div id="custom-search-input">
-                        <div class="input-group col-md-12">
-                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                            <input type="text" class="  search-query form-control user-control30" placeholder="Search here...." />
-                            <span class="input-group-btn">
-                                <button class="btn btn-danger" type="button">
-                                    <span class=" glyphicon glyphicon-search"></span>
-                                </button>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <section class="footer-part">
-            <div class="container">
-                <div class="row">
-
-                    <div class="col-md-3">
-                        <div class="info-part-one320">
-                            <h4>Where We Are ?</h4>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi adipiscing gravida odio, sit amet suscipit risus ultrices eu.</p>
-                            <h4>Address :</h4>
-                            <p>Ask Me Network, 33 Street, syada<br> Zeinab, Cairo, Egypt.</p>
-                            <h4>Support :</h4>
-                            <p>Support Telephone No : (+2)01111011110</p>
-                            <p>Support Email Account : </p>
-                            <p>info@example.com</p>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="info-part-two320">
-                            <h4>Quick Links</h4>
-                            <a href="#"><p>-Home</p></a>
-                            <a href="#"><p>-Ask Question</p></a>
-                            <a href="#"><p>-Questions</p></a>
-                            <a href="#"><p>-Users</p></a>
-                            <a href="#"><p>-Edit Profile</p></a>
-                            <a href="#"><p>-Page</p></a>
-                            <a href="#"><p>-Contact Us</p></a>
-                            <a href="#"><p>-Buy now</p></a>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="info-part-three320">
-                            <h4>Popular Questions</h4>
-                            <div class="news-info209">
-
-                                <h5>Why are the British confused</h5>
-                                <p>(Why I darest say, they darest not get offended when they so ...</p>
-                                <small>July 16, 2017</small>
-                            </div>
-                            <div class="news-info209">
-                                <h5>How to approach applying for</h5>
-                                <p>(I am trying to find/change my career trajectory. Its a good cozy ...</p>
-                                <small>July 16, 2017</small>
-                            </div>
-                            <div class="news-info209">
-                                <h5>How to evaluate whether a</h5>
-                                <p>A friend of mine is the CEO of his own small business. ...</p>
-                                <small>July 16, 2017</small>
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="info-part-four320">
-                            <h4>Latest Tweets</h4>
-                            <div class="tweet-details29">
-                                <p>
-                                    <i class="fa fa-twitter-square" aria-hidden="true"></i><a href="#">
-                                        codeThemesCheck a new update #AskMe #ThemeForest #WordPress #2code #Envato#2code
-                                        Themehttps://t.co/urb3LgsOCi
-                                    </a>
-                                </p>
-                                <small>about 2 weeks ago</small>
-                            </div>
-                            <div class="tweet-details29">
-                                <p>
-                                    <i class="fa fa-twitter-square" aria-hidden="true"></i><a href="#">
-                                        codeThemesCheck a new update #AskMe #ThemeForest #WordPress #2code #Envato#2code
-                                        Themehttps://t.co/urb3LgsOCi
-                                    </a>
-                                </p>
-                                <small>about 2 weeks ago</small>
-                            </div>
-                            <div class="tweet-details29">
-                                <p>
-                                    <i class="fa fa-twitter-square" aria-hidden="true"></i><a href="#">
-                                        codeThemesCheck a new update #AskMe #ThemeForest #WordPress #2code #Envato#2code
-                                        Themehttps://t.co/urb3LgsOCi
-                                    </a>
-                                </p>
-                                <small>about 2 weeks ago</small>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section class="footer-social">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-6">
-                        <p>Copyright 2017 Ask me | <strong>Sudo  Coder</strong></p>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="social-right2389">
-                            <a href="#"><i class="fa fa-twitter-square" aria-hidden="true"></i></a>
-                            <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                            <a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
-                            <a href="#"><i class="fa fa-youtube" aria-hidden="true"></i></a>
-                            <a href="#"><i class="fa fa-skype" aria-hidden="true"></i></a>
-                            <a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
-                            <a href="#"><i class="fa fa-rss" aria-hidden="true"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-        <script src="js/jquery-3.1.1.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <script src="js/npm.js"></script>
+               </div>
+          </div>
+     </section>
 </body>
 
-</html>
+<style>
+     /* Custom styles for About page */
+     .section-header {
+          display: flex;
+          align-items: center;
+          margin-bottom: 20px;
+     }
 
+     .section-icon {
+          font-size: 24px;
+          color: var(--accent-purple);
+          margin-right: 15px;
+          background: rgba(124, 77, 255, 0.1);
+          padding: 10px;
+          border-radius: 50%;
+          width: 45px;
+          height: 45px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+     }
+
+     .modern-divider {
+          background: linear-gradient(90deg, var(--accent-purple), transparent);
+          height: 2px;
+          border: none;
+          margin-bottom: 30px;
+     }
+
+     /* Social list styling */
+     .social-list {
+          list-style: none;
+          padding: 0;
+          margin: 0;
+     }
+
+          .social-list li {
+               margin-bottom: 10px;
+          }
+
+     /* Highlight Cards */
+     .highlight-card {
+          display: flex;
+          align-items: flex-start;
+          padding: 20px;
+          margin-bottom: 20px;
+          background: rgba(124, 77, 255, 0.05);
+          border-radius: 15px;
+          border-left: 4px solid var(--accent-purple);
+          transition: all 0.3s ease;
+     }
+
+          .highlight-card:hover {
+               transform: translateY(-3px);
+               box-shadow: 0 8px 25px rgba(124, 77, 255, 0.15);
+               background: rgba(124, 77, 255, 0.08);
+          }
+
+     .highlight-icon {
+          background: linear-gradient(45deg, var(--accent-purple), var(--secondary-purple));
+          color: white;
+          width: 50px;
+          height: 50px;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin-right: 20px;
+          flex-shrink: 0;
+     }
+
+     .highlight-content h5 {
+          color: var(--accent-purple);
+          font-weight: 600;
+          margin-bottom: 8px;
+     }
+
+     .highlight-content p {
+          color: #666;
+          margin: 0;
+          line-height: 1.6;
+     }
+
+     /* Team Member Cards */
+     .team-member-card {
+          display: flex;
+          padding: 25px;
+          margin-bottom: 25px;
+          background: rgba(124, 77, 255, 0.03);
+          border-radius: 15px;
+          border: 1px solid rgba(124, 77, 255, 0.1);
+          transition: all 0.3s ease;
+     }
+
+          .team-member-card:hover {
+               transform: translateY(-5px);
+               box-shadow: 0 12px 35px rgba(124, 77, 255, 0.15);
+               border-color: var(--accent-purple);
+          }
+
+     .member-avatar {
+          position: relative;
+          margin-right: 25px;
+          flex-shrink: 0;
+     }
+
+          .member-avatar img {
+               width: 80px;
+               height: 80px;
+               border-radius: 50%;
+               border: 3px solid var(--accent-purple);
+          }
+
+     .member-status {
+          position: absolute;
+          bottom: 5px;
+          right: 5px;
+          width: 16px;
+          height: 16px;
+          border-radius: 50%;
+          border: 3px solid white;
+     }
+
+          .member-status.online {
+               background: #4caf50;
+          }
+
+     .member-info h5 {
+          color: var(--text-dark);
+          font-weight: 700;
+          margin-bottom: 8px;
+          font-size: 18px;
+     }
+
+     .member-role {
+          color: var(--accent-purple);
+          font-weight: 600;
+          margin-bottom: 12px;
+          display: flex;
+          align-items: center;
+     }
+
+          .member-role i {
+               margin-right: 8px;
+          }
+
+     .member-description {
+          color: #666;
+          line-height: 1.6;
+          margin-bottom: 15px;
+     }
+
+     .member-skills {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 8px;
+     }
+
+     .skill-tag {
+          background: linear-gradient(45deg, var(--primary-dark), var(--primary-blue));
+          color: white;
+          padding: 4px 12px;
+          border-radius: 15px;
+          font-size: 12px;
+          font-weight: 500;
+     }
+
+     /* Statistics Grid */
+     .stats-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+          gap: 20px;
+          margin-top: 20px;
+     }
+
+     .stat-card {
+          background: rgba(124, 77, 255, 0.05);
+          padding: 25px 20px;
+          border-radius: 15px;
+          text-align: center;
+          border: 1px solid rgba(124, 77, 255, 0.1);
+          transition: all 0.3s ease;
+     }
+
+          .stat-card:hover {
+               transform: translateY(-5px);
+               box-shadow: 0 10px 30px rgba(124, 77, 255, 0.15);
+               background: rgba(124, 77, 255, 0.08);
+          }
+
+     .stat-icon {
+          background: linear-gradient(45deg, var(--accent-purple), var(--secondary-purple));
+          color: white;
+          width: 60px;
+          height: 60px;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin: 0 auto 15px auto;
+          font-size: 24px;
+     }
+
+     .stat-content h3 {
+          color: var(--accent-purple);
+          font-size: 32px;
+          font-weight: 700;
+          margin-bottom: 5px;
+     }
+
+     .stat-content p {
+          color: #666;
+          font-weight: 500;
+          margin: 0;
+     }
+
+     /* Contact Grid */
+     .contact-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+          gap: 20px;
+     }
+
+     .contact-item {
+          display: flex;
+          align-items: flex-start;
+          padding: 20px;
+          background: rgba(124, 77, 255, 0.05);
+          border-radius: 15px;
+          transition: all 0.3s ease;
+     }
+
+          .contact-item:hover {
+               transform: translateY(-3px);
+               box-shadow: 0 8px 25px rgba(124, 77, 255, 0.15);
+          }
+
+     .contact-icon {
+          background: linear-gradient(45deg, var(--accent-purple), var(--secondary-purple));
+          color: white;
+          width: 45px;
+          height: 45px;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin-right: 15px;
+          flex-shrink: 0;
+     }
+
+     .contact-info h6 {
+          color: var(--accent-purple);
+          font-weight: 600;
+          margin-bottom: 5px;
+     }
+
+     .contact-info p {
+          color: #666;
+          margin: 0;
+          line-height: 1.5;
+     }
+
+     .contact-info a {
+          color: var(--accent-purple);
+          text-decoration: none;
+          transition: all 0.3s ease;
+     }
+
+          .contact-info a:hover {
+               color: var(--hover-purple);
+               text-decoration: underline;
+          }
+
+     /* Mission & Vision Cards */
+     .mission-card, .vision-card {
+          background: rgba(124, 77, 255, 0.05);
+          padding: 25px;
+          border-radius: 15px;
+          height: 100%;
+          border-left: 4px solid var(--accent-purple);
+          transition: all 0.3s ease;
+     }
+
+          .mission-card:hover, .vision-card:hover {
+               transform: translateY(-5px);
+               box-shadow: 0 12px 35px rgba(124, 77, 255, 0.15);
+          }
+
+     .mission-header, .vision-header {
+          display: flex;
+          align-items: center;
+          margin-bottom: 15px;
+     }
+
+          .mission-header i, .vision-header i {
+               color: var(--accent-purple);
+               font-size: 20px;
+               margin-right: 10px;
+          }
+
+          .mission-header h5, .vision-header h5 {
+               color: var(--text-dark);
+               font-weight: 600;
+               margin: 0;
+          }
+
+     .mission-card p, .vision-card p {
+          color: #666;
+          line-height: 1.6;
+          margin: 0;
+     }
+
+     /* Sidebar improvements */
+     .stats-sidebar a {
+          display: block;
+          padding: 8px 0;
+          color: var(--text-dark);
+          text-decoration: none;
+          border-bottom: 1px solid rgba(124, 77, 255, 0.1);
+          transition: all 0.3s ease;
+     }
+
+          .stats-sidebar a:hover {
+               color: var(--accent-purple);
+               padding-left: 10px;
+          }
+
+          .stats-sidebar a:last-child {
+               border-bottom: none;
+          }
+
+     .stats-sidebar i {
+          margin-right: 10px;
+          width: 20px;
+     }
+
+     /* Map container styling */
+     .map-container-modern {
+          padding: 20px;
+          background: var(--card-bg);
+          border-radius: 20px;
+          box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+     }
+</style>
