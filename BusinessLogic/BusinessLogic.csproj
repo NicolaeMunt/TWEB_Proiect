@@ -56,9 +56,15 @@
     <Compile Include="Migrations\202505160948288_InitialCreate.Designer.cs">
       <DependentUpon>202505160948288_InitialCreate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202505202221419_AddPostsAndComments.cs" />
+    <Compile Include="Migrations\202505202221419_AddPostsAndComments.Designer.cs">
+      <DependentUpon>202505202221419_AddPostsAndComments.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\PostRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
+    <Compile Include="Services\PostService.cs" />
     <Compile Include="Services\UserService.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -78,6 +84,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202505160948288_InitialCreate.resx">
       <DependentUpon>202505160948288_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202505202221419_AddPostsAndComments.resx">
+      <DependentUpon>202505202221419_AddPostsAndComments.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
