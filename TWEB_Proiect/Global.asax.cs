@@ -19,7 +19,7 @@ namespace TWEB_Proiect
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
             // Database initialization - add these lines
-            System.Data.Entity.Database.SetInitializer(new System.Data.Entity.CreateDatabaseIfNotExists<BusinessLogic.Data.ApplicationDbContext>());
+            System.Data.Entity.Database.SetInitializer(new CreateDatabaseIfNotExists<BusinessLogic.Data.ApplicationDbContext>());
 
             // Force database creation and schema application
             using (var context = new BusinessLogic.Data.ApplicationDbContext())

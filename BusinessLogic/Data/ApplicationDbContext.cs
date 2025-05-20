@@ -6,7 +6,7 @@ namespace BusinessLogic.Data
 {
     public class ApplicationDbContext : DbContext
     {
-        public ApplicationDbContext() : base("DefaultConnection")
+        public ApplicationDbContext() : base("name=ApplicationDbContext")
         {
             this.Database.Log = s => System.Diagnostics.Debug.WriteLine(s);
         }
