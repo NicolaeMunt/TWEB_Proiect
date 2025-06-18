@@ -54,6 +54,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\Answer.cs" />
     <Compile Include="Entities\Question.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Enums\URole.cs" />

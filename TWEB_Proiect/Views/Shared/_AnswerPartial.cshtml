@@ -1,0 +1,63 @@
+﻿@model TWEB_Proiect.Domain.Entities.Answer
+
+<div class="answer-card @(Model.IsAccepted ? "accepted" : "")">
+     <div class="answer-header">
+          <div>
+               <strong><i class="fa fa-user"></i> @Model.Username</strong>
+               <span class="date-info">
+                    <i class="fa fa-clock-o"></i> @Model.CreatedDate.ToString("dd MMMM yyyy, HH:mm")
+               </span>
+               @if (Model.IsAccepted)
+               {
+                    <span class="accepted-badge">
+                         <i class="fa fa-check"></i> Răspuns Acceptat
+                    </span>
+               }
+          </div>
+     </div>
+
+     <div class="answer-content">
+          @Model.Content
+     </div>
+
+     @if (!string.IsNullOrEmpty(Model.AttachmentPath))
+     {
+          <div class="attachment-section">
+               <a href="@Url.Content(Model.AttachmentPath)" class="attachment-link" target="_blank">
+                    <i class="fa fa-paperclip"></i> Attachment
+               </a>
+          </div>
+     }
+
+     @* Действия с ответом (только для авторизованных пользователей) *@
+     @if (ViewBag.IsUserLoggedIn)
+     {
+          <div class="answer-actions">
+               @* Кнопка принятия ответа (только для автора вопроса) *@
+               @if (ViewBag.CurrentUserId != null && ViewBag.QuestionAuthorId == (int)ViewBag.CurrentUserId && !Model.IsAccepted)
+               {
+                    using (Html.BeginForm("Accept", "Answer", FormMethod.Post))
+                    {
+                         @Html.AntiForgeryToken()
+                         <input type="hidden" name="answerId" value="@Model.Id" />
+                         <button type="submit" class="btn-success-custom" onclick="return confirm('Ești sigur că vrei să accepți acest răspuns ca fiind corect?');">
+                              <i class="fa fa-check"></i> Acceptă răspunsul
+                         </button>
+                    }
+               }
+
+               @* Кнопка удаления (для автора ответа или автора вопроса) *@
+               @if (ViewBag.CurrentUserId != null && (Model.UserId == (int)ViewBag.CurrentUserId || ViewBag.QuestionAuthorId == (int)ViewBag.CurrentUserId))
+               {
+                    using (Html.BeginForm("Delete", "Answer", FormMethod.Post))
+                    {
+                         @Html.AntiForgeryToken()
+                         <input type="hidden" name="answerId" value="@Model.Id" />
+                         <button type="submit" class="btn-danger-custom" onclick="return confirm('Ești sigur că vrei să ștergi acest răspuns?');">
+                              <i class="fa fa-trash"></i> Șterge
+                         </button>
+                    }
+               }
+          </div>
+     }
+</div>

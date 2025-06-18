@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -14,7 +15,8 @@ namespace TWEB_Proiect
     {
         protected void Application_Start()
         {
-            using (var context = new TWEB_Proiect.Data.ApplicationDbContext())
+               Database.SetInitializer<ApplicationDbContext>(null);
+               using (var context = new TWEB_Proiect.Data.ApplicationDbContext())
             {
                 context.Database.CreateIfNotExists();
             }
